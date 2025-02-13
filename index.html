@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XVideos Access - Multilingual</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif, system-ui;
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            color: #fff;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        #container {
+            width: 90%;
+            max-width: 900px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .heading {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4500;
+            text-shadow: 2px 2px 10px #000;
+            margin-bottom: 20px;
+        }
+
+        .sub-heading {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        #cta-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            text-transform: uppercase;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        #cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+        }
+
+        .password-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .password-container input {
+            padding: 12px;
+            font-size: 18px;
+            width: 80%;
+            max-width: 400px;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .password-container button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            text-transform: uppercase;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .password-container button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+        }
+
+        .notification {
+            display: none;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        /* Адаптация изображений */
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Image without link -->
+        <div class="image-container">
+            <img src="ai_botfull.png" alt="AI Bot Full" />
+        </div>
+
+        <div class="sub-heading" data-translate="sub-heading">380000+ ВИДЕО ПО КАТЕГОРИЯМ</div>
+
+        <!-- Password Generator -->
+        <div class="password-container">
+            <input type="text" id="password" readonly placeholder="***************" data-translate="password-placeholder">
+            <br>
+            <button onclick="generatePassword()" data-translate="generate-password">ПОЛУЧИТЕ ПАРОЛЬ</button>
+            <button onclick="copyPassword()" data-translate="copy-password">КОПИРОВАТЬ</button>
+            <div class="notification" id="notification" data-translate="password-copied">Пароль скопирован!</div>
+        </div>
+
+        <!-- Button -->
+        <a id="cta-button" href="https://www1.affione.fyi/click?pid=116623&offer_id=531#join" 
+           target="_blank" rel="noopener noreferrer" data-translate="cta-button">РАЗБЛОКИРОВАТЬ ВСЕ КАТЕГОРИИ</a>
+    </div>
+
+<script>
+    // Переводы на разные языки
+    const translations = {
+        "en": {
+            "sub-heading": "380000+ VIDEOS BY CATEGORY",
+            "password-placeholder": "***************",
+            "generate-password": "GET PASSWORD",
+            "copy-password": "COPY",
+            "password-copied": "Password copied!",
+            "cta-button": "UNLOCK ALL CATEGORIES"
+        },
+        "ru": {
+            "sub-heading": "380000+ ВИДЕО ПО КАТЕГОРИЯМ",
+            "password-placeholder": "***************",
+            "generate-password": "ПОЛУЧИТЕ ПАРОЛЬ",
+            "copy-password": "КОПИРОВАТЬ",
+            "password-copied": "Пароль скопирован!",
+            "cta-button": "РАЗБЛОКИРОВАТЬ ВСЕ КАТЕГОРИИ"
+        },
+        "fr": {
+            "sub-heading": "380000+ VIDÉOS PAR CATÉGORIE",
+            "password-placeholder": "***************",
+            "generate-password": "OBTENIR LE MOT DE PASSE",
+            "copy-password": "COPIER",
+            "password-copied": "Mot de passe copié!",
+            "cta-button": "DÉBLOQUER TOUTES LES CATÉGORIES"
+        },
+        "de": {
+            "sub-heading": "380000+ VIDEOS NACH KATEGORIEN",
+            "password-placeholder": "***************",
+            "generate-password": "PASSWORT ERHALTEN",
+            "copy-password": "KOPIEREN",
+            "password-copied": "Passwort kopiert!",
+            "cta-button": "ALLES KATEGORIEN FREISCHALTEN"
+        },
+        "it": {
+            "sub-heading": "380000+ VIDEO PER CATEGORIA",
+            "password-placeholder": "***************",
+            "generate-password": "OTTENERE LA PASSWORD",
+            "copy-password": "COPIA",
+            "password-copied": "Password copiato!",
+            "cta-button": "SBLOCCARE TUTTE LE CATEGORIE"
+        },
+        "es": {
+            "sub-heading": "380000+ VÍDEOS POR CATEGORÍAS",
+            "password-placeholder": "***************",
+            "generate-password": "OBTENER CONTRASEÑA",
+            "copy-password": "COPIAR",
+            "password-copied": "¡Contraseña copiada!",
+            "cta-button": "DESBLOQUEAR TODAS LAS CATEGORÍAS"
+        },
+        "pt": {
+            "sub-heading": "380000+ VÍDEOS POR CATEGORIAS",
+            "password-placeholder": "***************",
+            "generate-password": "OBTER SENHA",
+            "copy-password": "COPIAR",
+            "password-copied": "Senha copiada!",
+            "cta-button": "DESBLOQUEAR TODAS AS CATEGORIAS"
+        },
+        "no": {
+            "sub-heading": "380000+ VIDEOER ETTER KATEGORI",
+            "password-placeholder": "***************",
+            "generate-password": "FÅ PASSORD",
+            "copy-password": "KOPIER",
+            "password-copied": "Passord kopiert!",
+            "cta-button": "LÅS OPP ALLE KATEGORIER"
+        },
+        "ch": {
+            "sub-heading": "380000+ VIDEOS NACH KATEGORIEN",
+            "password-placeholder": "***************",
+            "generate-password": "PASSWORT ERHALTEN",
+            "copy-password": "KOPIEREN",
+            "password-copied": "Passwort kopiert!",
+            "cta-button": "ALLE KATEGORIEN FREISCHALTEN"
+        },
+        "au": {
+            "sub-heading": "380000+ VIDEOS BY CATEGORY",
+            "password-placeholder": "***************",
+            "generate-password": "GET PASSWORD",
+            "copy-password": "COPY",
+            "password-copied": "Password copied!",
+            "cta-button": "UNLOCK ALL CATEGORIES"
+        },
+        "dk": {
+            "sub-heading": "380000+ VIDEOER EFTER KATEGORI",
+            "password-placeholder": "***************",
+            "generate-password": "FÅ ADGANGSKODE",
+            "copy-password": "KOPIER",
+            "password-copied": "Adgangskode kopieret!",
+            "cta-button": "LÅS ALLE KATEGORIER OP"
+        },
+        "at": {
+            "sub-heading": "380000+ VIDEOS NACH KATEGORIEN",
+            "password-placeholder": "***************",
+            "generate-password": "PASSWORT ERHALTEN",
+            "copy-password": "KOPIEREN",
+            "password-copied": "Passwort kopiert!",
+            "cta-button": "ALLE KATEGORIEN FREISCHALTEN"
+        },
+        "be": {
+            "sub-heading": "380000+ VIDÉOS PAR CATÉGORIE",
+            "password-placeholder": "***************",
+            "generate-password": "OBTENIR LE MOT DE PASSE",
+            "copy-password": "COPIER",
+            "password-copied": "Mot de passe copié!",
+            "cta-button": "DÉBLOQUER TOUTES LES CATÉGORIES"
+        },
+        "cz": {
+            "sub-heading": "380000+ VIDEA PODLE KATEGORIÍ",
+            "password-placeholder": "***************",
+            "generate-password": "ZÍSKAT HESLO",
+            "copy-password": "KOPÍROVAT",
+            "password-copied": "Heslo zkopírováno!",
+            "cta-button": "ODEMKNOUT VŠECHNY KATEGORIE"
+        },
+        "ee": {
+            "sub-heading": "380000+ VIDEOD KATEGOORI JAOKS",
+            "password-placeholder": "***************",
+            "generate-password": "SAAGE PAROOL",
+            "copy-password": "KOOPIA",
+            "password-copied": "Parool kopeeritud!",
+            "cta-button": "AVAGE KÕIK KATEGOORIAD"
+        },
+        "fi": {
+            "sub-heading": "380000+ VIDEOITA KATEGORIOITTAIN",
+            "password-placeholder": "***************",
+            "generate-password": "SAAD PASSIWORDIN",
+            "copy-password": "KOPIOI",
+            "password-copied": "Salasana kopioitu!",
+            "cta-button": "AVAA KAIKKI KATEGORIOIDEN SISÄLLÖT"
+        },
+        "il": {
+            "sub-heading": "380000+ וִידֵאוֹת בקטגוריות",
+            "password-placeholder": "***************",
+            "generate-password": "קַבֵּל סִיסְמָה",
+            "copy-password": "העתק",
+            "password-copied": "הסיסמה הועתקה!",
+            "cta-button": "שחרר את כל הקטגוריות"
+        },
+        "nl": {
+            "sub-heading": "380000+ VIDEO'S PER CATEGORIE",
+            "password-placeholder": "***************",
+            "generate-password": "KRIJG WACHTWOORD",
+            "copy-password": "KOPIËREN",
+            "password-copied": "Wachtwoord gekopieerd!",
+            "cta-button": "ONBLOKKEER ALLE CATEGORIEËN"
+        },
+        "nz": {
+            "sub-heading": "380000+ VIDEOS BY CATEGORY",
+            "password-placeholder": "***************",
+            "generate-password": "GET PASSWORD",
+            "copy-password": "COPY",
+            "password-copied": "Password copied!",
+            "cta-button": "UNLOCK ALL CATEGORIES"
+        },
+        "sk": {
+            "sub-heading": "380000+ VIDEÁ PODĽA KATEGÓRIÍ",
+            "password-placeholder": "***************",
+            "generate-password": "ZÍSKAŤ HESLO",
+            "copy-password": "KOPÍROVAŤ",
+            "password-copied": "Heslo skopírované!",
+            "cta-button": "ODOMKNÚŤ VŠETKY KATEGÓRIE"
+        },
+        "jp": {
+            "sub-heading": "380000+ カテゴリ別ビデオ",
+            "password-placeholder": "***************",
+            "generate-password": "パスワードを取得",
+            "copy-password": "コピー",
+            "password-copied": "パスワードがコピーされました！",
+            "cta-button": "すべてのカテゴリをアンロック"
+        }
+    };
+
+    // Функция для определения языка браузера
+    function detectLanguage() {
+        const userLang = navigator.language || navigator.userLanguage;
+        const lang = userLang.split('-')[0]; // Получаем код языка (en, ru, fr и т.д.)
+        const supportedLanguages = ['en', 'ru', 'fr', 'de', 'it', 'es', 'pt', 'no', 'ch', 'au', 'dk', 'at', 'be', 'cz', 'ee', 'fi', 'il', 'nl', 'nz', 'sk', 'jp']; // Список поддерживаемых языков
+        
+        // По умолчанию устанавливаем английский, если язык не поддерживается
+        const languageToSet = supportedLanguages.includes(lang) ? lang : 'en';
+        setLanguage(languageToSet);
+    }
+
+    // Функция для изменения языка
+    function setLanguage(lang) {
+        const elements = document.querySelectorAll('[data-translate]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+    }
+
+    // Запуск определения языка при загрузке страницы
+    window.onload = detectLanguage;
+
+    // Функция генерации пароля
+    function generatePassword() {
+        const length = Math.floor(Math.random() * (16 - 15 + 1)) + 15;
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+";
+        let password = "";
+        for (let i = 0; i < length; i++) {
+            password += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+        document.getElementById("password").value = password;
+    }
+
+    // Функция для копирования пароля
+    function copyPassword() {
+        const password = document.getElementById('password').value;
+        navigator.clipboard.writeText(password).then(() => {
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        });
+    }
+</script>
+
+</body>
+</html>
