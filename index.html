@@ -121,9 +121,9 @@
             margin: 20px 0;
         }
 
-        /* Новый стиль для текста под кнопкой */
+        /* Новый стиль для текста над кнопкой */
         .additional-text {
-            margin-top: 30px; /* Отступ снизу */
+            margin-bottom: 30px; /* Отступ снизу */
             font-size: 16px;  /* Размер шрифта */
             font-weight: normal; /* Вес шрифта */
             color: #01B22E; /* Цвет текста */
@@ -141,6 +141,11 @@
 
     <div class="sub-heading" data-translate="sub-heading">380000+ ВИДЕО ПО КАТЕГОРИЯМ</div>
 
+    <!-- Additional text moved above the button -->
+    <div class="additional-text" data-translate="additional-text">
+        Для доступа вставь этот пароль по ссылке на e-mail
+    </div>
+
     <!-- Password Generator -->
     <div class="password-container">
         <input type="text" id="password" readonly placeholder="***************" data-translate="password-placeholder">
@@ -153,11 +158,6 @@
     <!-- Button -->
     <a id="cta-button" href="https://www2.affione.fyi/click?pid=116623&offer_id=64&path=signup/user" 
        target="_blank" rel="noopener noreferrer" data-translate="cta-button">РАЗБЛОКИРОВАТЬ ВСЕ КАТЕГОРИИ</a>
-
-    <!-- Additional text after the form -->
-    <div class="additional-text" data-translate="additional-text">
-        Для доступа вставь этот пароль по ссылке на e-mail
-    </div>
 </div>
 
 <script>
