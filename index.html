@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XVideos Access - Multilingual</title>
+    <title>Password Generator</title>
     <style>
         body, html {
             margin: 0;
@@ -16,58 +16,31 @@
             overflow-x: hidden;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             position: relative;
         }
 
         #container {
-            width: 90%;
-            max-width: 900px;
-            background: rgba(30, 30, 0.95);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            width: 90%; /* Adjust width */
+            max-width: 800px; /* Limit the container width */
+            margin: 20px;
             text-align: center;
-            margin: 20px 0;
+            box-sizing: border-box;
         }
 
-        .heading {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ff4500;
-            text-shadow: 2px 2px 10px #000;
+        .image-container {
+            width: 100%;
+            height: 300px; /* Set a fixed height for the image container */
             margin-bottom: 20px;
+            overflow: hidden; /* Hide any overflow content */
         }
 
-        .sub-heading {
-            font-size: 18px;
-            font-weight: bold;
-            color: #000;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-top: 5px;
-            margin-bottom: 20px;
-        }
-
-        #cta-button {
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #000;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
-            text-transform: uppercase;
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure the image is fully visible without clipping */
+            display: block;
             border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
-        }
-
-        #cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
         }
 
         .password-container {
@@ -107,72 +80,192 @@
             box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
         }
 
+        #cta-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            text-transform: uppercase;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        #cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+        }
+
         .notification {
             display: none;
             color: #28a745;
             font-weight: bold;
         }
 
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
+        @media (max-width: 768px) {
+            #container {
+                padding: 15px;
+            }
 
-        .additional-text {
-            margin-bottom: 30px;
-            font-size: 16px;
-            font-weight: normal;
-            color: #01B22E;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
-            display: block;
-        }
+            .password-container input,
+            .password-container button,
+            #cta-button {
+                width: 100%;
+                font-size: 16px;
+            }
 
-        .new-text {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ff4500;
-            margin: 20px 0;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            .password-container button {
+                margin-top: 15px;
+                padding: 12px 35px;
+            }
         }
     </style>
 </head>
 <body>
+
 <div id="container">
     <div class="image-container">
         <img src="ai_botfull.png" alt="AI Bot Full" />
     </div>
 
-    <div class="sub-heading" data-translate="sub-heading">380000+ ВИДЕО ПО КАТЕГОРИЯМ</div>
-
-    <div class="new-text" data-translate="new-text">НОВИНКА ОТ</div>
-
-    <div class="image-container">
-        <img src="StripChat.png" alt="Strip Chat" />
-    </div>
-
-    <div class="additional-text" data-translate="additional-text">
-        Для доступа вставь этот пароль по ссылке на e-mail
-    </div>
-
     <div class="password-container">
-        <input type="text" id="password" readonly placeholder="***************" data-translate="password-placeholder">
+        <input type="text" id="password" readonly placeholder="***************">
         <br>
-        <button onclick="generatePassword()" data-translate="generate-password">ПОЛУЧИТЕ ПАРОЛЬ</button>
-        <button onclick="copyPassword()" data-translate="copy-password">КОПИРОВАТЬ</button>
-        <div class="notification" id="notification" data-translate="password-copied">Пароль скопирован!</div>
+        <button onclick="generatePassword()" id="generateBtn">Get Password</button>
+        <button onclick="copyPassword()" id="copyBtn">Copy</button>
+        <div class="notification" id="notification">Password copied!</div>
     </div>
 
-    <a id="cta-button" href="https://offer.affimelody.com/click?pid=116623&offer_id=831" 
-       target="_blank" rel="noopener noreferrer" data-translate="cta-button">РАЗБЛОКИРОВАТЬ ВСЕ КАТЕГОРИИ</a>
+    <a id="cta-button" href="https://offer.affimelody.com/click?pid=118208&offer_id=531#join" target="_blank" rel="noopener noreferrer">
+        UNLOCK VIDEO
+    </a>
 </div>
 
 <script>
-// This is the password characters set
-const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+";
+// Language translations for key elements
+const translations = {
+    en: {
+        placeholder: "***************",
+        generateBtn: "Get Password",
+        copyBtn: "Copy",
+        ctaButton: "UNLOCK VIDEO",
+        notification: "Password copied!"
+    },
+    ru: {
+        placeholder: "***************",
+        generateBtn: "Получить пароль",
+        copyBtn: "Копировать",
+        ctaButton: "РАЗБЛОКИРОВАТЬ ВИДЕО",
+        notification: "Пароль скопирован!"
+    },
+    es: {
+        placeholder: "***************",
+        generateBtn: "Obtener contraseña",
+        copyBtn: "Copiar",
+        ctaButton: "DESBLOQUEAR VIDEO",
+        notification: "¡Contraseña copiada!"
+    },
+    it: {
+        placeholder: "***************",
+        generateBtn: "Genera password",
+        copyBtn: "Copia",
+        ctaButton: "SBLOCCARE IL VIDEO",
+        notification: "Password copiata!"
+    },
+    fr: {
+        placeholder: "***************",
+        generateBtn: "Obtenir le mot de passe",
+        copyBtn: "Copier",
+        ctaButton: "DÉBLOQUER LA VIDÉO",
+        notification: "Mot de passe copié !"
+    },
+    de: {
+        placeholder: "***************",
+        generateBtn: "Passwort erhalten",
+        copyBtn: "Kopieren",
+        ctaButton: "VIDEO FREISCHALTEN",
+        notification: "Passwort kopiert!"
+    },
+    nl: {
+        placeholder: "***************",
+        generateBtn: "Wachtwoord ophalen",
+        copyBtn: "Kopiëren",
+        ctaButton: "VIDEO ONTSLOTEN",
+        notification: "Wachtwoord gekopieerd!"
+    },
+    se: {
+        placeholder: "***************",
+        generateBtn: "Få lösenord",
+        copyBtn: "Kopiera",
+        ctaButton: "LÅS UPP VIDEO",
+        notification: "Lösenord kopierat!"
+    },
+    dk: {
+        placeholder: "***************",
+        generateBtn: "Få adgangskode",
+        copyBtn: "Kopier",
+        ctaButton: "LÅS OPP VIDEO",
+        notification: "Adgangskode kopieret!"
+    },
+    no: {
+        placeholder: "***************",
+        generateBtn: "Få passord",
+        copyBtn: "Kopier",
+        ctaButton: "LÅS OPP VIDEO",
+        notification: "Passord kopiert!"
+    },
+    fi: {
+        placeholder: "***************",
+        generateBtn: "Hae salasana",
+        copyBtn: "Kopioi",
+        ctaButton: "AVA VIDEON",
+        notification: "Salasana kopioitu!"
+    },
+    pt: {
+        placeholder: "***************",
+        generateBtn: "Obter Senha",
+        copyBtn: "Copiar",
+        ctaButton: "DESBLOQUEAR VÍDEO",
+        notification: "Senha copiada!"
+    },
+    jp: {
+        placeholder: "***************",
+        generateBtn: "パスワードを取得",
+        copyBtn: "コピー",
+        ctaButton: "ビデオをアンロック",
+        notification: "パスワードがコピーされました！"
+    },
+    cn: {
+        placeholder: "***************",
+        generateBtn: "获取密码",
+        copyBtn: "复制",
+        ctaButton: "解锁视频",
+        notification: "密码已复制！"
+    }
+};
+
+// Function to detect the user's browser language
+const userLang = navigator.language || navigator.userLanguage;
+const langCode = userLang.substring(0, 2).toLowerCase();
+
+// Set translations based on language code
+const setLanguage = (lang) => {
+    document.getElementById("password").placeholder = translations[lang]?.placeholder || translations["en"].placeholder;
+    document.getElementById("generateBtn").innerText = translations[lang]?.generateBtn || translations["en"].generateBtn;
+    document.getElementById("copyBtn").innerText = translations[lang]?.copyBtn || translations["en"].copyBtn;
+    document.getElementById("cta-button").innerText = translations[lang]?.ctaButton || translations["en"].ctaButton;
+};
+
+// Initialize the language based on the browser's language
+setLanguage(langCode);
 
 // Function to generate a password with a random length between 15 and 17
+const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+";
+
 const generatePassword = () => {
     const passwordLength = Math.floor(Math.random() * 3) + 15; // Generates a length between 15 and 17
     let password = "";
@@ -194,132 +287,6 @@ const copyPassword = () => {
         notification.style.display = 'none';
     }, 2000);
 };
-
-// Translation function (with browser language detection)
-const translations = {
-    "en": {
-        "sub-heading": "380000+ VIDEOS BY CATEGORY",
-        "new-text": "NEW FROM",
-        "password-placeholder": "***************",
-        "generate-password": "GET PASSWORD",
-        "copy-password": "COPY",
-        "password-copied": "Password copied!",
-        "cta-button": "UNLOCK ALL CATEGORIES",
-        "additional-text": "Just answer the questions"
-    },
-    "ru": {
-        "sub-heading": "380000+ ВИДЕО ПО КАТЕГОРИЯМ",
-        "new-text": "НОВИНКА ОТ",
-        "password-placeholder": "***************",
-        "generate-password": "ПОЛУЧИТЕ ПАРОЛЬ",
-        "copy-password": "КОПИРОВАТЬ",
-        "password-copied": "Пароль скопирован!",
-        "cta-button": "РАЗБЛОКИРОВАТЬ ВСЕ КАТЕГОРИИ",
-        "additional-text": "Просто ответь на вопросы"
-    },
-    "fr": {
-        "sub-heading": "380000+ VIDÉOS PAR CATÉGORIE",
-        "new-text": "NOUVEAUTÉ DE",
-        "password-placeholder": "***************",
-        "generate-password": "OBTENIR LE MOT DE PASSE",
-        "copy-password": "COPIER",
-        "password-copied": "Mot de passe copié!",
-        "cta-button": "DÉBLOQUER TOUTES LES CATÉGORIES",
-        "additional-text": "Répondez simplement aux questions"
-    },
-    "de": {
-        "sub-heading": "380000+ VIDEOS NACH KATEGORIEN",
-        "new-text": "NEU VON",
-        "password-placeholder": "***************",
-        "generate-password": "PASSWORT HOLEN",
-        "copy-password": "KOPIEREN",
-        "password-copied": "Passwort kopiert!",
-        "cta-button": "ALLE KATEGORIEN FREISCHALTEN",
-        "additional-text": "Beantworten Sie einfach die Fragen"
-    },
-    "it": {
-        "sub-heading": "380000+ VIDEO PER CATEGORIA",
-        "new-text": "NUOVO DA",
-        "password-placeholder": "***************",
-        "generate-password": "OTTENERE LA PASSWORD",
-        "copy-password": "COPIA",
-        "password-copied": "Password copiato!",
-        "cta-button": "SBLOCCA TUTTE LE CATEGORIE",
-        "additional-text": "Rispondi semplicemente alle domande"
-    },
-    "es": {
-        "sub-heading": "380000+ VÍDEOS POR CATEGORÍA",
-        "new-text": "NUEVO DE",
-        "password-placeholder": "***************",
-        "generate-password": "OBTENER CONTRASEÑA",
-        "copy-password": "COPIAR",
-        "password-copied": "¡Contraseña copiada!",
-        "cta-button": "DESBLOQUEAR TODAS LAS CATEGORÍAS",
-        "additional-text": "Simplemente responde las preguntas"
-    },
-    "nl": {
-        "sub-heading": "380000+ VIDEO'S PER CATEGORIE",
-        "new-text": "NIEUW VAN",
-        "password-placeholder": "***************",
-        "generate-password": "KRIJG WACHTWOORD",
-        "copy-password": "KOPIËREN",
-        "password-copied": "Wachtwoord gekopieerd!",
-        "cta-button": "ONTBLOK ALLE CATEGORIËN",
-        "additional-text": "Beantwoord gewoon de vragen"
-    },
-    "no": {
-        "sub-heading": "380000+ VIDEOER ETTER KATEGORI",
-        "new-text": "NY FRA",
-        "password-placeholder": "***************",
-        "generate-password": "FÅ PASSORD",
-        "copy-password": "KOPIER",
-        "password-copied": "Passord kopiert!",
-        "cta-button": "LÅS OPP ALLE KATEGORIER",
-        "additional-text": "Bare svar på spørsmålene"
-    },
-    "se": {
-        "sub-heading": "380000+ VIDEOS EFTER KATEGORI",
-        "new-text": "NYTT FRÅN",
-        "password-placeholder": "***************",
-        "generate-password": "FÅ LÖSENORD",
-        "copy-password": "KOPIERA",
-        "password-copied": "Lösenord kopierat!",
-        "cta-button": "LÅS UPP ALLA KATEGORIER",
-        "additional-text": "Svara bara på frågorna"
-    },
-    "ch": {
-        "sub-heading": "380000+ VIDEOS NACH KATEGORIEN",
-        "new-text": "NEU VON",
-        "password-placeholder": "***************",
-        "generate-password": "PASSWORT BEKOMMEN",
-        "copy-password": "KOPIEREN",
-        "password-copied": "Passwort kopiert!",
-        "cta-button": "ALLE KATEGORIEN FREISCHALTEN",
-        "additional-text": "Beantworten Sie einfach die Fragen"
-    }
-};
-
-// Function to detect browser language and apply the translation
-const getBrowserLanguage = () => {
-    const browserLang = navigator.language || navigator.userLanguage;
-    return browserLang.split('-')[0]; // Get language part (e.g., 'en' from 'en-US')
-};
-
-// Apply translation
-const translate = () => {
-    const lang = getBrowserLanguage(); // Get the browser's language
-    const supportedLanguages = Object.keys(translations);
-    const selectedLang = supportedLanguages.includes(lang) ? lang : 'en'; // Default to 'en' if language is not supported
-
-    Object.keys(translations[selectedLang]).forEach(key => {
-        const element = document.querySelector(`[data-translate="${key}"]`);
-        if (element) {
-            element.textContent = translations[selectedLang][key];
-        }
-    });
-};
-
-translate();
 </script>
 
 </body>
