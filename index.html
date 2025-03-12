@@ -43,6 +43,13 @@
             border-radius: 8px;
         }
 
+        .text-below-image {
+            font-size: 18px;
+            color: white; /* Белый цвет текста */
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
         .password-container {
             margin: 20px 0;
             display: flex;
@@ -143,6 +150,11 @@
         <img src="ai_botfull.png" alt="AI Bot Full" />
     </div>
 
+    <!-- Новый блок текста -->
+    <p class="text-below-image" id="text-below-image">
+        Это и 380000+ ВИДЕО будут доступны после простого входа, e-mail не нужен!
+    </p>
+
     <div class="password-container">
         <input type="text" id="password" readonly placeholder="***************">
         <br>
@@ -164,108 +176,123 @@ const translations = {
         "generateBtn": "Get Password",
         "copyBtn": "Copy",
         "notification": "Password copied!",
-        "ctaBtn": "UNLOCK VIDEO"
+        "ctaBtn": "UNLOCK VIDEO",
+        "textBelowImage": "This and 380,000+ VIDEOS will be available after a simple login, no email required!"
     },
     "ru": {
         "placeholder": "***************",
         "generateBtn": "Получить пароль",
         "copyBtn": "Копировать",
         "notification": "Пароль скопирован!",
-        "ctaBtn": "РАЗБЛОКИРОВАТЬ ВИДЕО"
+        "ctaBtn": "РАЗБЛОКИРОВАТЬ ВИДЕО",
+        "textBelowImage": "Это и 380000+ ВИДЕО будут доступны после простого входа, e-mail не нужен!"
     },
     "es": {
         "placeholder": "***************",
         "generateBtn": "Obtener contraseña",
         "copyBtn": "Copiar",
         "notification": "¡Contraseña copiada!",
-        "ctaBtn": "DESBLOQUEAR VIDEO"
+        "ctaBtn": "DESBLOQUEAR VIDEO",
+        "textBelowImage": "¡Esto y más de 380,000 VIDEOS estarán disponibles después de un inicio de sesión simple, no se necesita correo electrónico!"
     },
     "it": {
         "placeholder": "***************",
         "generateBtn": "Ottieni la password",
         "copyBtn": "Copia",
         "notification": "Password copiata!",
-        "ctaBtn": "SBLOCCARE IL VIDEO"
+        "ctaBtn": "SBLOCCARE IL VIDEO",
+        "textBelowImage": "Questo e oltre 380.000 VIDEO saranno disponibili dopo un semplice accesso, nessuna email richiesta!"
     },
     "fr": {
         "placeholder": "***************",
         "generateBtn": "Obtenir le mot de passe",
         "copyBtn": "Copier",
         "notification": "Mot de passe copié!",
-        "ctaBtn": "DÉBLOQUER LA VIDÉO"
+        "ctaBtn": "DÉBLOQUER LA VIDÉO",
+        "textBelowImage": "Cela et plus de 380 000 VIDÉOS seront disponibles après une connexion simple, aucun e-mail requis!"
     },
     "de": {
         "placeholder": "***************",
         "generateBtn": "Passwort erhalten",
         "copyBtn": "Kopieren",
         "notification": "Passwort kopiert!",
-        "ctaBtn": "VIDEO FREISCHALTEN"
+        "ctaBtn": "VIDEO FREISCHALTEN",
+        "textBelowImage": "Dies und über 380.000 VIDEOS sind nach einer einfachen Anmeldung verfügbar, keine E-Mail erforderlich!"
     },
     "nl": {
         "placeholder": "***************",
         "generateBtn": "Krijg wachtwoord",
         "copyBtn": "Kopiëren",
         "notification": "Wachtwoord gekopieerd!",
-        "ctaBtn": "VIDEO ONBLOKKEREN"
+        "ctaBtn": "VIDEO ONBLOKKEREN",
+        "textBelowImage": "Dit en meer dan 380.000 VIDEOS zijn beschikbaar na een eenvoudige login, geen e-mail vereist!"
     },
     "se": {
         "placeholder": "***************",
         "generateBtn": "Få lösenord",
         "copyBtn": "Kopiera",
         "notification": "Lösenord kopierat!",
-        "ctaBtn": "LÅS UPP VIDEO"
+        "ctaBtn": "LÅS UPP VIDEO",
+        "textBelowImage": "Detta och 380 000+ VIDEOS kommer att vara tillgängliga efter enkel inloggning, ingen e-post behövs!"
     },
     "dk": {
         "placeholder": "***************",
         "generateBtn": "Få adgangskode",
         "copyBtn": "Kopiere",
         "notification": "Adgangskode kopieret!",
-        "ctaBtn": "LÅS OP VIDEO"
+        "ctaBtn": "LÅS OP VIDEO",
+        "textBelowImage": "Dette og over 380.000 VIDEOER vil være tilgængelige efter en simpel login, ingen e-mail kræves!"
     },
     "no": {
         "placeholder": "***************",
         "generateBtn": "Få passord",
         "copyBtn": "Kopier",
         "notification": "Passord kopiert!",
-        "ctaBtn": "LÅS OPP VIDEO"
+        "ctaBtn": "LÅS OPP VIDEO",
+        "textBelowImage": "Dette og 380 000+ VIDEOER vil være tilgjengelige etter en enkel pålogging, ingen e-post er nødvendig!"
     },
     "fi": {
         "placeholder": "***************",
         "generateBtn": "Hanki salasana",
         "copyBtn": "Kopioi",
         "notification": "Salasana kopioitu!",
-        "ctaBtn": "AVA VIDEO"
+        "ctaBtn": "AVA VIDEO",
+        "textBelowImage": "Tämä ja yli 380 000 VIDEOITA on saatavilla yksinkertaisen kirjautumisen jälkeen, ei sähköpostia vaadita!"
     },
     "pt": {
         "placeholder": "***************",
         "generateBtn": "Obter senha",
         "copyBtn": "Copiar",
         "notification": "Senha copiada!",
-        "ctaBtn": "DESBLOQUEAR VÍDEO"
+        "ctaBtn": "DESBLOQUEAR VÍDEO",
+        "textBelowImage": "Isso e mais de 380.000 VÍDEOS estarão disponíveis após um login simples, sem necessidade de e-mail!"
     },
     "jp": {
         "placeholder": "***************",
         "generateBtn": "パスワードを取得",
         "copyBtn": "コピー",
         "notification": "パスワードがコピーされました！",
-        "ctaBtn": "ビデオをアンロック"
+        "ctaBtn": "ビデオをアンロック",
+        "textBelowImage": "これと380,000以上のビデオは、簡単なログイン後に利用可能です。メールは不要です！"
     },
     "cn": {
         "placeholder": "***************",
         "generateBtn": "获取密码",
         "copyBtn": "复制",
         "notification": "密码已复制！",
-        "ctaBtn": "解锁视频"
+        "ctaBtn": "解锁视频",
+        "textBelowImage": "这些和超过380,000个视频将在简单登录后提供，无需电子邮件！"
     },
-    // Добавьте другие языки по аналогии
 };
 
+// Функция для установки языка
 function setLanguage(lang) {
     document.querySelector("#password").placeholder = translations[lang].placeholder;
     document.querySelector("#generateBtn").innerText = translations[lang].generateBtn;
     document.querySelector("#copyBtn").innerText = translations[lang].copyBtn;
     document.querySelector("#notification").innerText = translations[lang].notification;
     document.querySelector("#cta-button").innerText = translations[lang].ctaBtn;
+    document.querySelector("#text-below-image").innerText = translations[lang].textBelowImage;
 }
 
 // Получаем язык браузера пользователя и устанавливаем соответствующий перевод
