@@ -163,7 +163,7 @@
         <div class="notification" id="notification">Password copied!</div>
     </div>
 
-    <a id="cta-button" href="https://offer.affimelody.com/click?pid=118208&offer_id=531#join" target="_blank" rel="noopener noreferrer">
+    <a id="cta-button" href="#" target="_blank" rel="noopener noreferrer">
         UNLOCK VIDEO
     </a>
 </div>
@@ -201,7 +201,7 @@ const translations = {
         "copyBtn": "Copia",
         "notification": "Password copiata!",
         "ctaBtn": "SBLOCCARE IL VIDEO",
-        "textBelowImage": "Questo e oltre 380.000 VIDEO saranno disponibili dopo un semplice accesso, usando la password!"
+        "textBelowImage": "Questo e oltre 380.000 VIDEO saranno disponibili dopo un semplice accesso, utilizzando la password!"
     },
     "fr": {
         "placeholder": "***************",
@@ -209,7 +209,7 @@ const translations = {
         "copyBtn": "Copier",
         "notification": "Mot de passe copié!",
         "ctaBtn": "DÉBLOQUER LA VIDÉO",
-        "textBelowImage": "Cela et plus de 380 000 VIDÉOS seront disponibles après une connexion simple, en utilisant le mot de passe!"
+        "textBelowImage": "Cela et plus de 380 000 VIDÉOS seront disponibles après une simple connexion, en utilisant le mot de passe!"
     },
     "de": {
         "placeholder": "***************",
@@ -217,7 +217,7 @@ const translations = {
         "copyBtn": "Kopieren",
         "notification": "Passwort kopiert!",
         "ctaBtn": "VIDEO FREISCHALTEN",
-        "textBelowImage": "Dies und über 380.000 VIDEOS sind nach einer einfachen Anmeldung verfügbar, indem du das Passwort verwendest!"
+        "textBelowImage": "Dies und über 380.000 VIDEOS werden nach einer einfachen Anmeldung mit dem Passwort verfügbar sein!"
     },
     "nl": {
         "placeholder": "***************",
@@ -225,7 +225,7 @@ const translations = {
         "copyBtn": "Kopiëren",
         "notification": "Wachtwoord gekopieerd!",
         "ctaBtn": "VIDEO ONBLOKKEREN",
-        "textBelowImage": "Dit en meer dan 380.000 VIDEOS zijn beschikbaar na een eenvoudige login, door het wachtwoord te gebruiken!"
+        "textBelowImage": "Dit en meer dan 380.000 VIDEOS zijn beschikbaar na een eenvoudige login, gebruikmakend van het wachtwoord!"
     },
     "se": {
         "placeholder": "***************",
@@ -233,7 +233,7 @@ const translations = {
         "copyBtn": "Kopiera",
         "notification": "Lösenord kopierat!",
         "ctaBtn": "LÅS UPP VIDEO",
-        "textBelowImage": "Detta och 380 000+ VIDEOS kommer att vara tillgängliga efter enkel inloggning, genom att använda lösenordet!"
+        "textBelowImage": "Detta och mer än 380 000 VIDEOS kommer att vara tillgängliga efter ett enkelt inlogg, med hjälp av lösenordet!"
     },
     "dk": {
         "placeholder": "***************",
@@ -241,7 +241,7 @@ const translations = {
         "copyBtn": "Kopiere",
         "notification": "Adgangskode kopieret!",
         "ctaBtn": "LÅS OP VIDEO",
-        "textBelowImage": "Dette og over 380.000 VIDEOER vil være tilgængelige efter en simpel login, ved at bruge adgangskoden!"
+        "textBelowImage": "Dette og over 380.000 VIDEOER vil være tilgængelige efter en enkel login, ved at bruge adgangskoden!"
     },
     "no": {
         "placeholder": "***************",
@@ -249,7 +249,7 @@ const translations = {
         "copyBtn": "Kopier",
         "notification": "Passord kopiert!",
         "ctaBtn": "LÅS OPP VIDEO",
-        "textBelowImage": "Dette og 380 000+ VIDEOER vil være tilgjengelige etter en enkel pålogging, ved å bruke passordet!"
+        "textBelowImage": "Dette og mer enn 380 000 VIDEOER vil være tilgjengelige etter en enkel pålogging, ved å bruke passordet!"
     },
     "fi": {
         "placeholder": "***************",
@@ -257,7 +257,7 @@ const translations = {
         "copyBtn": "Kopioi",
         "notification": "Salasana kopioitu!",
         "ctaBtn": "AVA VIDEO",
-        "textBelowImage": "Tämä ja yli 380 000 VIDEOITA on saatavilla yksinkertaisen kirjautumisen jälkeen, käyttäen salasanaa!"
+        "textBelowImage": "Tämä ja yli 380 000 VIDEOTA ovat saatavilla yksinkertaisella kirjautumisella, käyttäen salasanaa!"
     },
     "pt": {
         "placeholder": "***************",
@@ -265,7 +265,7 @@ const translations = {
         "copyBtn": "Copiar",
         "notification": "Senha copiada!",
         "ctaBtn": "DESBLOQUEAR VÍDEO",
-        "textBelowImage": "Isso e mais de 380.000 VÍDEOS estarão disponíveis após um login simples, usando a senha!"
+        "textBelowImage": "Isso e mais de 380.000 VÍDEOS estarão disponíveis após um simples login, usando a senha!"
     },
     "jp": {
         "placeholder": "***************",
@@ -273,7 +273,7 @@ const translations = {
         "copyBtn": "コピー",
         "notification": "パスワードがコピーされました！",
         "ctaBtn": "ビデオをアンロック",
-        "textBelowImage": "これと380,000以上のビデオは、簡単なログイン後に利用可能です。パスワードを使用してください！"
+        "textBelowImage": "これと380,000以上の動画は、パスワードを使って簡単にログインした後に利用できます！"
     },
     "cn": {
         "placeholder": "***************",
@@ -281,8 +281,9 @@ const translations = {
         "copyBtn": "复制",
         "notification": "密码已复制！",
         "ctaBtn": "解锁视频",
-        "textBelowImage": "这些和超过380,000个视频将在简单登录后提供，使用密码即可！"
+        "textBelowImage": "这些以及超过380,000个视频将在简单登录后通过密码访问！"
     },
+    // Добавьте другие языки по аналогии
 };
 
 // Функция для установки языка
@@ -324,6 +325,20 @@ const copyPassword = () => {
         notification.style.display = 'none';
     }, 2000);
 };
+
+// Устанавливаем правильную ссылку в зависимости от устройства
+function setLink() {
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent); // Проверка на мобильное устройство
+    const linkElement = document.getElementById('cta-button');
+    if (isMobile) {
+        linkElement.href = "https://offer.affimelody.com/click?pid=118208&offer_id=531#join";
+    } else {
+        linkElement.href = "https://avzqa.imitrkn.net/?utm_source=95373a9daf4cb6a2&s1=48854&s2=209775";
+    }
+}
+
+// Устанавливаем ссылку при загрузке
+setLink();
 </script>
 
 </body>
