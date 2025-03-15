@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
+    <title>XVideos Access - Multilingual</title>
     <style>
         body, html {
             margin: 0;
@@ -16,52 +16,89 @@
             overflow-x: hidden;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             position: relative;
         }
 
         #container {
-            width: 100%;
-            max-width: 100vw;
-            box-sizing: border-box;
+            width: 90%;
+            max-width: 900px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin: 20px 0;
         }
 
-        .images-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 100vw;
+        .heading {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4500;
+            text-shadow: 2px 2px 10px #000;
             margin-bottom: 20px;
         }
 
-        .images-container img {
-            width: 100%;
-            max-height: 45vh; /* Ограничиваем высоту изображений */
-            object-fit: contain; /* Сохраняем пропорции */
-            display: block;
-            border-radius: 8px;
-            margin-bottom: 10px;
+        .sub-heading {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
 
-        .text-below-image {
+        .info-text {
             font-size: 18px;
-            color: white; /* Белый цвет текста */
-            margin-top: 10px;
+            color: #ccc;
+            margin: 15px 0;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
             font-weight: bold;
+        }
+
+        .steps {
+            margin: 20px 0;
+            text-align: left;
+            font-size: 16px;
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        .steps span.number {
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 18px;
+        }
+
+        #cta-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            text-transform: uppercase;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        #cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
         }
 
         .password-container {
             margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center;
         }
 
         .password-container input {
@@ -89,33 +126,9 @@
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-top: 10px;
-            width: 80%;
-            max-width: 400px;
         }
 
         .password-container button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
-        }
-
-        #cta-button {
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #000;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
-            text-transform: uppercase;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        #cta-button:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
         }
@@ -126,238 +139,149 @@
             font-weight: bold;
         }
 
-        .title-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff4500; /* Цвет текста как у кнопок */
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 768px) {
-            .images-container {
-                margin-bottom: 10px;
-            }
-
-            .password-container input,
-            .password-container button,
-            #cta-button {
-                width: 90%;
-                font-size: 16px;
-                padding: 12px 0;
-            }
-
-            .password-container button {
-                margin-top: 12px;
-            }
-
-            #cta-button {
-                margin-top: 15px;
-                padding: 12px 0;
-            }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
+    <div id="container">
+        <div class="heading" id="heading">Получите мгновенный доступ к контенту XVideos!</div>
 
-<div id="container">
-    <div class="images-container">
-        <!-- Текст над первым изображением -->
-        <div class="title-text">XVideos</div>
-        <img src="ai_botfull.png" alt="AI Bot Full" />
-        <img src="ai_bot.png" alt="AI Bot" />
+        <div class="image-container">
+            <img src="ai_bot.png" alt="AI Bot" />
+        </div>
+
+        <div class="sub-heading" id="sub-heading">ВАМ БУДЕТ ДОСТУПНО 380000+ ВИДЕО ПО КАТЕГОРИЯМ</div>
+
+        <div class="password-container">
+            <input type="text" id="password" readonly placeholder="Generated Password will appear here" />
+            <br>
+            <button onclick="generatePassword()" id="generate-password">ПОЛУЧИТЕ ПАРОЛЬ ДЛЯ ДОСТУПА</button>
+            <button onclick="copyPassword()" id="copy-password">Копировать пароль</button>
+            <div class="notification" id="notification">Пароль скопирован!</div>
+        </div>
+
+        <div class="info-text" id="info-text">Разблокируйте раздел XVideos за 2 простых шага, используя Ваш пароль:</div>
+
+        <div class="image-container">
+            <a href="#" id="dynamic-link" target="_blank" rel="noopener noreferrer">
+                <img src="ai_botfull.png" alt="AI Bot Full" />
+            </a>
+        </div>
+
+        <div class="steps">
+            <p><span class="number" id="step1-number">1.</span> <span id="step1">ВВЕДИТЕ ИМЯ ПОЛЬЗОВАТЕЛЯ</span></p>
+            <p><span class="number" id="step2-number">2.</span> <span id="step2">ВСТАВЬТЕ ПОЛУЧЕНЫЙ ПАРОЛЬ</span></p>
+        </div>
+
+        <a id="cta-button" href="#" target="_blank" rel="noopener noreferrer">Разблокировать контент XVideos сейчас бесплатно</a>
     </div>
 
-    <!-- Новый блок текста -->
-    <p class="text-below-image" id="text-below-image">
-        Это и 380000+ ВИДЕО будут доступны после простого входа, используя пароль!
-    </p>
+    <script>
+        const translations = {
+            en: {
+                heading: "Get Instant Access to XVideos Content!",
+                sub_heading: "ENJOY 380,000+ VIDEOS IN VARIOUS CATEGORIES",
+                info_text: "Unlock the XVideos section in 2 simple steps using your password:",
+                step1: "ENTER USERNAME",
+                step2: "PASTE THE GENERATED PASSWORD",
+                generate_password: "GET ACCESS PASSWORD",
+                copy_password: "Copy Password",
+                password_copied: "Password copied!",
+                cta_button: "Unlock XVideos Content Now for Free"
+            },
+            ru: {
+                heading: "Получите мгновенный доступ к контенту XVideos!",
+                sub_heading: "ВАМ БУДЕТ ДОСТУПНО 380000+ ВИДЕО ПО КАТЕГОРИЯМ",
+                info_text: "Разблокируйте раздел XVideos за 2 простых шага, используя Ваш пароль:",
+                step1: "ВВЕДИТЕ ИМЯ ПОЛЬЗОВАТЕЛЯ",
+                step2: "ВСТАВЬТЕ ПОЛУЧЕНЫЙ ПАРОЛЬ",
+                generate_password: "ПОЛУЧИТЕ ПАРОЛЬ ДЛЯ ДОСТУПА",
+                copy_password: "Копировать пароль",
+                password_copied: "Пароль скопирован!",
+                cta_button: "Разблокировать контент XVideos сейчас бесплатно"
+            },
+            // Добавьте другие языки, как показано выше...
+        };
 
-    <div class="password-container">
-        <input type="text" id="password" readonly placeholder="***************">
-        <br>
-        <button onclick="generatePassword()" id="generateBtn">Get Password</button>
-        <button onclick="copyPassword()" id="copyBtn">Copy</button>
-        <div class="notification" id="notification">Password copied!</div>
-    </div>
+        // Определение языка браузера
+        function getBrowserLanguage() {
+            const lang = navigator.language || navigator.userLanguage; // Получаем язык браузера
+            return lang.split('-')[0]; // Извлекаем только основной язык (например, 'en', 'ru', 'fr')
+        }
 
-    <a id="cta-button" href="#" target="_blank" rel="noopener noreferrer">
-        UNLOCK VIDEO
-    </a>
-</div>
+        // Функция для смены языка
+        function changeLanguage(lang) {
+            if (translations[lang]) {
+                document.getElementById('heading').innerText = translations[lang].heading;
+                document.getElementById('sub-heading').innerText = translations[lang].sub_heading;
+                document.getElementById('info-text').innerText = translations[lang].info_text;
+                document.getElementById('step1').innerText = translations[lang].step1;
+                document.getElementById('step2').innerText = translations[lang].step2;
+                document.getElementById('generate-password').innerText = translations[lang].generate_password;
+                document.getElementById('copy-password').innerText = translations[lang].copy_password;
+                document.getElementById('notification').innerText = translations[lang].password_copied;
+                document.getElementById('cta-button').innerText = translations[lang].cta_button;
+            } else {
+                // Если язык не найден, используем английский по умолчанию
+                changeLanguage('en');
+            }
+        }
 
-<script>
-// Переводы на разные языки
-const translations = {
-    "en": {
-        "placeholder": "***************",
-        "generateBtn": "Get Password",
-        "copyBtn": "Copy",
-        "notification": "Password copied!",
-        "ctaBtn": "UNLOCK VIDEO",
-        "textBelowImage": "This and 380,000+ VIDEOS will be available after a simple login, using the password!"
-    },
-    "ru": {
-        "placeholder": "***************",
-        "generateBtn": "Получить пароль",
-        "copyBtn": "Копировать",
-        "notification": "Пароль скопирован!",
-        "ctaBtn": "РАЗБЛОКИРОВАТЬ ВИДЕО",
-        "textBelowImage": "Это и 380000+ ВИДЕО будут доступны после простого входа, используя пароль!"
-    },
-    "es": {
-        "placeholder": "***************",
-        "generateBtn": "Obtener contraseña",
-        "copyBtn": "Copiar",
-        "notification": "¡Contraseña copiada!",
-        "ctaBtn": "DESBLOQUEAR VIDEO",
-        "textBelowImage": "¡Esto y más de 380,000 VIDEOS estarán disponibles después de un inicio de sesión simple, usando la contraseña!"
-    },
-    "it": {
-        "placeholder": "***************",
-        "generateBtn": "Ottieni la password",
-        "copyBtn": "Copia",
-        "notification": "Password copiata!",
-        "ctaBtn": "SBLOCCARE IL VIDEO",
-        "textBelowImage": "Questo e oltre 380.000 VIDEO saranno disponibili dopo un semplice accesso, utilizzando la password!"
-    },
-    "fr": {
-        "placeholder": "***************",
-        "generateBtn": "Obtenir le mot de passe",
-        "copyBtn": "Copier",
-        "notification": "Mot de passe copié!",
-        "ctaBtn": "DÉBLOQUER LA VIDÉO",
-        "textBelowImage": "Cela et plus de 380 000 VIDÉOS seront disponibles après une simple connexion, en utilisant le mot de passe!"
-    },
-    "de": {
-        "placeholder": "***************",
-        "generateBtn": "Passwort erhalten",
-        "copyBtn": "Kopieren",
-        "notification": "Passwort kopiert!",
-        "ctaBtn": "VIDEO FREISCHALTEN",
-        "textBelowImage": "Dies und über 380.000 VIDEOS werden nach einer einfachen Anmeldung mit dem Passwort verfügbar sein!"
-    },
-    "nl": {
-        "placeholder": "***************",
-        "generateBtn": "Krijg wachtwoord",
-        "copyBtn": "Kopiëren",
-        "notification": "Wachtwoord gekopieerd!",
-        "ctaBtn": "VIDEO ONBLOKKEREN",
-        "textBelowImage": "Dit en meer dan 380.000 VIDEOS zijn beschikbaar na een eenvoudige login, gebruikmakend van het wachtwoord!"
-    },
-    "se": {
-        "placeholder": "***************",
-        "generateBtn": "Få lösenord",
-        "copyBtn": "Kopiera",
-        "notification": "Lösenord kopierat!",
-        "ctaBtn": "LÅS UPP VIDEO",
-        "textBelowImage": "Detta och mer än 380 000 VIDEOS kommer att vara tillgängliga efter ett enkelt inlogg, med hjälp av lösenordet!"
-    },
-    "dk": {
-        "placeholder": "***************",
-        "generateBtn": "Få adgangskode",
-        "copyBtn": "Kopiere",
-        "notification": "Adgangskode kopieret!",
-        "ctaBtn": "LÅS OP VIDEO",
-        "textBelowImage": "Dette og over 380.000 VIDEOER vil være tilgængelige efter en enkel login, ved at bruge adgangskoden!"
-    },
-    "no": {
-        "placeholder": "***************",
-        "generateBtn": "Få passord",
-        "copyBtn": "Kopier",
-        "notification": "Passord kopiert!",
-        "ctaBtn": "LÅS OPP VIDEO",
-        "textBelowImage": "Dette og mer enn 380 000 VIDEOER vil være tilgjengelige etter en enkel pålogging, ved å bruke passordet!"
-    },
-    "fi": {
-        "placeholder": "***************",
-        "generateBtn": "Hanki salasana",
-        "copyBtn": "Kopioi",
-        "notification": "Salasana kopioitu!",
-        "ctaBtn": "AVA VIDEO",
-        "textBelowImage": "Tämä ja yli 380 000 VIDEOTA ovat saatavilla yksinkertaisella kirjautumisella, käyttäen salasanaa!"
-    },
-    "pt": {
-        "placeholder": "***************",
-        "generateBtn": "Obter senha",
-        "copyBtn": "Copiar",
-        "notification": "Senha copiada!",
-        "ctaBtn": "DESBLOQUEAR VÍDEO",
-        "textBelowImage": "Isso e mais de 380.000 VÍDEOS estarão disponíveis após um simples login, usando a senha!"
-    },
-    "jp": {
-        "placeholder": "***************",
-        "generateBtn": "パスワードを取得",
-        "copyBtn": "コピー",
-        "notification": "パスワードがコピーされました！",
-        "ctaBtn": "ビデオをアンロック",
-        "textBelowImage": "これと380,000以上の動画は、パスワードを使って簡単にログインした後に利用できます！"
-    },
-    "cn": {
-        "placeholder": "***************",
-        "generateBtn": "获取密码",
-        "copyBtn": "复制",
-        "notification": "密码已复制！",
-        "ctaBtn": "解锁视频",
-        "textBelowImage": "这些以及超过380,000个视频将在简单登录后通过密码访问！"
-    },
-};
+        // Получаем язык браузера и меняем язык страницы
+        const browserLang = getBrowserLanguage();
+        changeLanguage(browserLang);
 
-// Функция для установки языка
-function setLanguage(lang) {
-    document.querySelector("#password").placeholder = translations[lang].placeholder;
-    document.querySelector("#generateBtn").innerText = translations[lang].generateBtn;
-    document.querySelector("#copyBtn").innerText = translations[lang].copyBtn;
-    document.querySelector("#notification").innerText = translations[lang].notification;
-    document.querySelector("#cta-button").innerText = translations[lang].ctaBtn;
-    document.querySelector("#text-below-image").innerText = translations[lang].textBelowImage;
-}
+        // Обновление ссылки для мобильных/десктопных устройств
+        function updateLink() {
+            const mobileLink = "https://offer.affimelody.com/click?pid=118208&offer_id=531#join";
+            const desktopLink = "https://avzqa.imitrkn.net/?utm_source=95373a9daf4cb6a2&s1=48854&s2=209775";
 
-// Получаем язык браузера пользователя и устанавливаем соответствующий перевод
-const userLang = navigator.language || navigator.userLanguage;
-const lang = userLang.split("-")[0];  // Берем только основную часть языка, например 'en' из 'en-US'
-setLanguage(lang);
+            const isMobile = window.innerWidth <= 800;
+            document.getElementById('dynamic-link').href = isMobile ? mobileLink : desktopLink;
+            document.getElementById('cta-button').href = isMobile ? mobileLink : desktopLink; // Добавляем ссылку для кнопки
+        }
 
-// Функция для генерации пароля
-const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+";
+        updateLink();
 
-const generatePassword = () => {
-    const passwordLength = Math.floor(Math.random() * 3) + 15; // Длина пароля от 15 до 17 символов
+// Генерация пароля от 15 до 17 символов с обязательным включением символов ~!@#$%^&*()_+
+function generatePassword() {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const specialChars = "~!@#$%^&*()_+";
+    
+    // Определяем случайную длину пароля от 15 до 17 символов
+    const passwordLength = Math.floor(Math.random() * 3) + 15; 
+    
     let password = "";
-    for (let i = 0; i < passwordLength; i++) {
-        const randomIndex = Math.floor(Math.random() * charset.length);
-        password += charset[randomIndex];
+    
+    // Добавляем обязательно хотя бы один спецсимвол
+    password += specialChars[Math.floor(Math.random() * specialChars.length)];
+    
+    // Добавляем оставшиеся случайные символы
+    for (let i = password.length; i < passwordLength; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        password += chars[randomIndex];
     }
-    document.getElementById('password').value = password;
-};
 
-// Функция для копирования пароля
-const copyPassword = () => {
-    const passwordField = document.getElementById('password');
-    passwordField.select();
-    document.execCommand('copy');
-    const notification = document.getElementById('notification');
-    notification.style.display = 'block';
-    setTimeout(() => {
-        notification.style.display = 'none';
-    }, 2000);
-};
+    // Перемешиваем символы, чтобы спецсимвол не всегда был в начале
+    password = password.split('').sort(() => Math.random() - 0.5).join('');
 
-// Устанавливаем правильную ссылку в зависимости от устройства
-function setLink() {
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent); // Проверка на мобильное устройство
-    const linkElement = document.getElementById('cta-button');
-    if (isMobile) {
-        linkElement.href = "https://offer.affimelody.com/click?pid=118208&offer_id=531#join";
-    } else {
-        linkElement.href = "https://avzqa.imitrkn.net/?utm_source=95373a9daf4cb6a2&s1=48854&s2=209775";
-    }
+    document.getElementById('password').value = password; // Отображаем пароль
 }
 
-// Устанавливаем ссылку при загрузке
-setLink();
-</script>
-
+        function copyPassword() {
+            const passwordField = document.getElementById('password');
+            passwordField.select();
+            document.execCommand('copy');
+            document.getElementById('notification').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('notification').style.display = 'none';
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
