@@ -23,7 +23,7 @@
         #container {
             width: 90%;
             max-width: 900px;
-            background: rgba(30, 30, 30, 0.95);
+            background-color: #333333; /* Темносерый цвет контейнера */
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
@@ -161,7 +161,7 @@
             <input type="text" id="password" readonly placeholder="Generated Password will appear here" />
             <br>
             <button onclick="generatePassword()" id="generate-password">ПОЛУЧИТЕ ПАРОЛЬ ДЛЯ ДОСТУПА</button>
-            <button onclick="copyPassword()" id="copy-password">Копировать пароль</button>
+            <button onclick="copyPassword()" id="copy-password">КОПИРОВАТЬ ПАРОЛЬ</button>
             <div class="notification" id="notification">Пароль скопирован!</div>
         </div>
 
@@ -182,6 +182,40 @@
     </div>
 
     <script>
+        // Функция для генерации случайного пароля с обязательным включением символов
+        function generatePassword() {
+            const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const specialCharacters = '~!@#$%^&*()_+';
+            let password = '';
+            
+            // Обеспечим наличие хотя бы одного специального символа
+            password += specialCharacters.charAt(Math.floor(Math.random() * specialCharacters.length));
+            
+            // Генерация остальной части пароля
+            const totalLength = Math.floor(Math.random() * (17 - 15 + 1)) + 15; // Длина пароля 15-17 символов
+            for (let i = password.length; i < totalLength; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                password += characters.charAt(randomIndex);
+            }
+
+            // Перемешиваем пароль, чтобы случайные символы располагались в любых местах
+            password = password.split('').sort(() => 0.5 - Math.random()).join('');
+            document.getElementById('password').value = password;
+        }
+
+        // Функция для копирования пароля в буфер обмена
+        function copyPassword() {
+            const passwordField = document.getElementById('password');
+            passwordField.select();
+            document.execCommand('copy');
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+
+        // Переводы
         const translations = {
             en: {
                 heading: "Get Instant Access to XVideos Content!",
@@ -205,141 +239,53 @@
                 password_copied: "Пароль скопирован!",
                 cta_button: "Разблокировать контент XVideos сейчас бесплатно"
             },
-            es: {
-                heading: "¡Obtén acceso instantáneo al contenido de XVideos!",
-                sub_heading: "DISFRUTA DE MÁS DE 380,000 VIDEOS EN VARIAS CATEGORÍAS",
-                info_text: "Desbloquea la sección de XVideos en 2 pasos simples usando tu contraseña:",
-                step1: "INGRESA EL NOMBRE DE USUARIO",
-                step2: "PEGA LA CONTRASEÑA GENERADA",
-                generate_password: "OBTENER CONTRASEÑA DE ACCESO",
-                copy_password: "Copiar contraseña",
-                password_copied: "¡Contraseña copiada!",
-                cta_button: "Desbloquear contenido de XVideos ahora gratis"
-            },
-            it: {
-                heading: "Ottieni accesso istantaneo ai contenuti di XVideos!",
-                sub_heading: "GODITI OLTRE 380.000 VIDEO IN DIVERSE CATEGORIE",
-                info_text: "Sblocca la sezione di XVideos in 2 semplici passaggi usando la tua password:",
-                step1: "INSERISCI IL NOME UTENTE",
-                step2: "INCOLLA LA PASSWORD GENERATA",
-                generate_password: "OTTENERE LA PASSWORD DI ACCESSO",
-                copy_password: "Copia password",
-                password_copied: "Password copiata!",
-                cta_button: "Sblocca i contenuti di XVideos ora gratuitamente"
-            },
             fr: {
-                heading: "Accédez instantanément au contenu de XVideos !",
-                sub_heading: "PROFITEZ DE PLUS DE 380 000 VIDÉOS DANS PLUSIEURS CATÉGORIES",
-                info_text: "Déverrouillez la section XVideos en 2 étapes simples en utilisant votre mot de passe :",
+                heading: "Accédez instantanément au contenu XVideos!",
+                sub_heading: "Bénéficiez de 380 000+ vidéos dans diverses catégories",
+                info_text: "Débloquez la section XVideos en 2 étapes simples en utilisant votre mot de passe:",
                 step1: "ENTREZ LE NOM D'UTILISATEUR",
                 step2: "COLLEZ LE MOT DE PASSE GÉNÉRÉ",
                 generate_password: "OBTENIR LE MOT DE PASSE D'ACCÈS",
                 copy_password: "Copier le mot de passe",
-                password_copied: "Mot de passe copié !",
-                cta_button: "Déverrouillez le contenu de XVideos maintenant gratuitement"
+                password_copied: "Mot de passe copié!",
+                cta_button: "Débloquez le contenu XVideos maintenant gratuitement"
             },
             de: {
-                heading: "Erhalte sofortigen Zugriff auf XVideos-Inhalte!",
-                sub_heading: "GENIESSE ÜBER 380.000 VIDEOS IN VERSCHIEDENEN KATEGORIEN",
-                info_text: "Entsperre den XVideos-Bereich in 2 einfachen Schritten mit deinem Passwort:",
-                step1: "GIB DEN BENUTZERNAMEN EIN",
-                step2: "FÜGE DAS GENERIERTE PASSWORT EIN",
-                generate_password: "ZUGANGSPASSWORT HOLEN",
+                heading: "Erhalten Sie sofortigen Zugriff auf XVideos-Inhalte!",
+                sub_heading: "GENIESSEN SIE 380.000+ VIDEOS IN VERSCHIEDENEN KATEGORIEN",
+                info_text: "Schalten Sie den XVideos-Bereich in 2 einfachen Schritten mit Ihrem Passwort frei:",
+                step1: "GEBEN SIE DEN BENUTZERNAMEN EIN",
+                step2: "FÜGEN SIE DAS GENERIERTE PASSWORT EIN",
+                generate_password: "ZUGRIFFSPASSWORT HOLEN",
                 copy_password: "Passwort kopieren",
                 password_copied: "Passwort kopiert!",
                 cta_button: "Jetzt XVideos-Inhalte kostenlos freischalten"
             },
-            nl: {
-                heading: "Krijg onmiddellijke toegang tot XVideos-inhoud!",
-                sub_heading: "GENIET VAN MEER DAN 380.000 VIDEO'S IN VERSCHILLENDE CATEGORIEËN",
-                info_text: "Ontgrendel de XVideos-sectie in 2 eenvoudige stappen met je wachtwoord:",
-                step1: "VOER GEBRUIKERSNAAM IN",
-                step2: "PLAK HET GEGENEERDE WACHTWOORD",
-                generate_password: "BESCHIKBAAR WACHTWOORD KRIJGEN",
-                copy_password: "Wachtwoord kopiëren",
-                password_copied: "Wachtwoord gekopieerd!",
-                cta_button: "Ontgrendel nu XVideos-inhoud gratis"
+            it: {
+                heading: "Accedi immediatamente ai contenuti di XVideos!",
+                sub_heading: "GODITI 380.000+ VIDEO IN DIVERSE CATEGORIE",
+                info_text: "Sblocca la sezione XVideos in 2 semplici passaggi usando la tua password:",
+                step1: "INSERISCI IL NOME UTENTE",
+                step2: "INCOLLA LA PASSWORD GENERATA",
+                generate_password: "OTTIENI LA PASSWORD DI ACCESSO",
+                copy_password: "Copia la password",
+                password_copied: "Password copiata!",
+                cta_button: "Sblocca ora i contenuti di XVideos gratuitamente"
             },
-            se: {
-                heading: "Få omedelbar åtkomst till XVideos-innehåll!",
-                sub_heading: "NJUT AV ÖVER 380 000 VIDEOS I MÅNGA KATEGORIER",
-                info_text: "Lås upp XVideos-sektionen i 2 enkla steg med ditt lösenord:",
-                step1: "ANGE ANVÄNDARNAMN",
-                step2: "KLISTRAR IN DET GENERERADE LÖSENORDET",
-                generate_password: "HÄMTA ÅTKOMSTSLÖSENORD",
-                copy_password: "Kopiera lösenord",
-                password_copied: "Lösenord kopierat!",
-                cta_button: "Lås upp XVideos-innehåll nu gratis"
-            },
-            dk: {
-                heading: "Få øjeblikkelig adgang til XVideos-indhold!",
-                sub_heading: "NYD OVER 380.000 VIDEOER I FORSKELLIGE KATEGORIER",
-                info_text: "Lås op for XVideos-sektionen i 2 enkle trin med din adgangskode:",
-                step1: "INDTAST BRUGERNAVN",
-                step2: "INDSÆT DEN GENEREREDE ADGANGSKODE",
-                generate_password: "HENT ADGANGSKODE",
-                copy_password: "Kopier adgangskode",
-                password_copied: "Adgangskode kopieret!",
-                cta_button: "Lås op for XVideos-indhold nu gratis"
-            },
-            no: {
-                heading: "Få umiddelbar tilgang til XVideos-innhold!",
-                sub_heading: "NYT MER ENN 380 000 VIDEOER I ULIKE KATEGORIER",
-                info_text: "Lås opp XVideos-seksjonen i 2 enkle trinn med passordet ditt:",
-                step1: "Skriv inn brukernavn",
-                step2: "LIM INN DEN GENERERTE PASSORD",
-                generate_password: "HENT PASSORD FOR TILGANG",
-                copy_password: "Kopier passord",
-                password_copied: "Passord kopiert!",
-                cta_button: "Lås opp XVideos-innhold nå gratis"
-            },
-            fi: {
-                heading: "Hanki välitön pääsy XVideos-sisältöön!",
-                sub_heading: "NAUTI YLI 380 000 VIDEOSTA ERI KATEGORIOISSA",
-                info_text: "Avaa XVideos-osio kahdella yksinkertaisella askeleella käyttämällä salasanaasi:",
-                step1: "SYÖTÄ KÄYTTÄJÄNIMI",
-                step2: "LIITÄ GENEROITU SALASANA",
-                generate_password: "HANKI PÄÄSY SALASANA",
-                copy_password: "Kopioi salasana",
-                password_copied: "Salasana kopioitu!",
-                cta_button: "Avaa XVideos-sisältö nyt ilmaiseksi"
-            },
-            pt: {
-                heading: "Obtenha acesso instantâneo ao conteúdo do XVideos!",
-                sub_heading: "DESFRUTE DE MAIS DE 380.000 VÍDEOS EM VARIAS CATEGORIAS",
-                info_text: "Desbloqueie a seção do XVideos em 2 etapas simples usando sua senha:",
-                step1: "DIGITE O NOME DE USUÁRIO",
-                step2: "COLE A SENHA GERADA",
-                generate_password: "OBTER SENHA DE ACESSO",
-                copy_password: "Copiar senha",
-                password_copied: "Senha copiada!",
-                cta_button: "Desbloquear conteúdo do XVideos agora gratuitamente"
-            },
-            jp: {
-                heading: "XVideosコンテンツに即アクセス！",
-                sub_heading: "380,000以上の動画を様々なカテゴリーで楽しむ",
-                info_text: "パスワードを使って、XVideosセクションを2つの簡単な手順でアンロックしてください：",
-                step1: "ユーザー名を入力",
-                step2: "生成されたパスワードを貼り付ける",
-                generate_password: "アクセス用パスワードを取得",
-                copy_password: "パスワードをコピー",
-                password_copied: "パスワードがコピーされました！",
-                cta_button: "今すぐXVideosコンテンツを無料でアンロック"
-            },
-            cn: {
-                heading: "立即访问XVideos内容！",
-                sub_heading: "享受超过380,000个视频，涵盖多种类别",
-                info_text: "使用您的密码，通过2个简单的步骤解锁XVideos部分：",
-                step1: "输入用户名",
-                step2: "粘贴生成的密码",
-                generate_password: "获取访问密码",
-                copy_password: "复制密码",
-                password_copied: "密码已复制！",
-                cta_button: "现在免费解锁XVideos内容"
+            es: {
+                heading: "¡Accede instantáneamente al contenido de XVideos!",
+                sub_heading: "DISFRUTA DE 380,000+ VIDEOS EN VARIAS CATEGORÍAS",
+                info_text: "Desbloquea la sección de XVideos en 2 pasos sencillos usando tu contraseña:",
+                step1: "INGRESA NOMBRE DE USUARIO",
+                step2: "PEGA LA CONTRASEÑA GENERADA",
+                generate_password: "OBTENER CONTRASEÑA DE ACCESO",
+                copy_password: "Copiar contraseña",
+                password_copied: "¡Contraseña copiada!",
+                cta_button: "Desbloquea el contenido de XVideos ahora gratis"
             }
         };
 
-        // Функция для смены языка
+        // Функция для изменения языка
         function changeLanguage(lang) {
             document.getElementById('heading').innerText = translations[lang].heading;
             document.getElementById('sub-heading').innerText = translations[lang].sub_heading;
@@ -352,58 +298,30 @@
             document.getElementById('cta-button').innerText = translations[lang].cta_button;
         }
 
-        // Функция для определения мобильного устройства
-        function isMobile() {
-            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        // Определяем язык браузера
+        const userLang = navigator.language || navigator.userLanguage;
+        const lang = userLang.startsWith('ru') ? 'ru' : 
+                     userLang.startsWith('fr') ? 'fr' : 
+                     userLang.startsWith('de') ? 'de' :
+                     userLang.startsWith('it') ? 'it' : 
+                     userLang.startsWith('es') ? 'es' : 'en'; // Default to English if language not supported
+        changeLanguage(lang);
+
+        // Динамическое обновление ссылки в зависимости от устройства
+        function updateLink() {
+            const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+            const link = document.getElementById('dynamic-link');
+            const ctaButton = document.getElementById('cta-button');
+            if (isMobile) {
+                link.href = 'https://offer.affimelody.com/click?pid=118208&offer_id=531#join';
+                ctaButton.href = 'https://offer.affimelody.com/click?pid=118208&offer_id=531#join';
+            } else {
+                link.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
+                ctaButton.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
+            }
         }
 
         // Обновляем ссылку в зависимости от устройства
-        function updateLink() {
-            const mobileLink = "https://offer.affimelody.com/click?pid=118208&offer_id=531#join";
-            const desktopLink = "https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join";
-
-            const link = isMobile() ? mobileLink : desktopLink;
-            document.getElementById('dynamic-link').setAttribute('href', link);
-        }
-
-// Генерация пароля от 15 до 17 символов с обязательным включением символов ~!@#$%^&*()_+
-function generatePassword() {
-    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const specialChars = "~!@#$%^&*()_+";
-    
-    // Определяем случайную длину пароля от 15 до 17 символов
-    const passwordLength = Math.floor(Math.random() * 3) + 15; 
-    
-    let password = "";
-    
-    // Добавляем обязательно хотя бы один спецсимвол
-    password += specialChars[Math.floor(Math.random() * specialChars.length)];
-    
-    // Добавляем оставшиеся случайные символы
-    for (let i = password.length; i < passwordLength; i++) {
-        const randomIndex = Math.floor(Math.random() * chars.length);
-        password += chars[randomIndex];
-    }
-
-    // Перемешиваем символы, чтобы спецсимвол не всегда был в начале
-    password = password.split('').sort(() => Math.random() - 0.5).join('');
-
-    document.getElementById('password').value = password; // Отображаем пароль
-}
-
-
-        // Копирование пароля
-        function copyPassword() {
-            const passwordField = document.getElementById('password');
-            passwordField.select();
-            document.execCommand('copy');
-            document.getElementById('notification').style.display = 'block'; // Показываем уведомление о копировании
-        }
-
-        // Выбираем язык
-        changeLanguage('en'); // Устанавливаем английский язык по умолчанию
-
-        // Обновление ссылки
         updateLink();
     </script>
 </body>
