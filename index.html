@@ -23,7 +23,7 @@
         #container {
             width: 90%;
             max-width: 900px;
-            background-color: #333333; /* Темносерый цвет контейнера */
+            background-color: #333333;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
@@ -140,10 +140,23 @@
         }
 
         .image-container img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
             border-radius: 8px;
             margin: 20px 0;
+            cursor: pointer;
+        }
+
+        .image-container a {
+            text-decoration: none;
+        }
+
+        .blocked-message {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            margin-top: 10px;
+            display: none;
         }
     </style>
 </head>
@@ -152,13 +165,19 @@
         <div class="heading" id="heading">Получите мгновенный доступ к контенту XVideos!</div>
 
         <div class="image-container">
-            <img src="ai_bot.png" alt="AI Bot" />
+            <img src="ai_bot.png" alt="AI Bot" onclick="showBlockedMessage()" />
+        </div>
+
+        <div class="blocked-message" id="blocked-message"></div>
+
+        <div class="image-container">
+            <img src="ai_botfull.png" alt="AI Full Bot"/>
         </div>
 
         <div class="sub-heading" id="sub-heading">ВАМ БУДЕТ ДОСТУПНО 380000+ ВИДЕО ПО КАТЕГОРИЯМ</div>
 
         <div class="password-container">
-            <input type="text" id="password" readonly placeholder="***************" />
+            <input type="text" id="password" readonly placeholder="Generated Password will appear here" />
             <br>
             <button onclick="generatePassword()" id="generate-password">ПОЛУЧИТЕ ПАРОЛЬ ДЛЯ ДОСТУПА</button>
             <button onclick="copyPassword()" id="copy-password">КОПИРОВАТЬ ПАРОЛЬ</button>
@@ -167,18 +186,13 @@
 
         <div class="info-text" id="info-text">Разблокируйте раздел XVideos за 2 простых шага, используя Ваш пароль:</div>
 
-        <div class="image-container">
-            <a href="#" id="dynamic-link" target="_blank" rel="noopener noreferrer">
-                <img src="ai_botfull.png" alt="AI Bot Full" />
-            </a>
-        </div>
-
         <div class="steps">
             <p><span class="number" id="step1-number">1.</span> <span id="step1">ВВЕДИТЕ ИМЯ ПОЛЬЗОВАТЕЛЯ</span></p>
             <p><span class="number" id="step2-number">2.</span> <span id="step2">ВСТАВЬТЕ ПОЛУЧЕНЫЙ ПАРОЛЬ</span></p>
         </div>
 
-        <a id="cta-button" href="#" target="_blank" rel="noopener noreferrer">Разблокировать контент XVideos сейчас бесплатно</a>
+        <!-- Кнопка ведет на разные ссылки в зависимости от устройства -->
+        <button id="cta-button" onclick="redirectUser()">Разблокировать контент XVideos сейчас бесплатно</button>
     </div>
 
     <script>
@@ -215,6 +229,63 @@
             }, 2000);
         }
 
+        // Функция для отображения сообщения "ВИДЕО ЗАБЛОКИРОВАНО"
+        function showBlockedMessage() {
+            const blockedMessage = document.getElementById('blocked-message');
+            const currentLang = document.documentElement.lang;
+
+            const messages = {
+                ru: "ВИДЕО ЗАБЛОКИРОВАНО",
+                en: "VIDEO BLOCKED",
+                fr: "VIDÉO BLOQUÉE",
+                de: "VIDEO GESPERRT",
+                it: "VIDEO BLOCCATO",
+                es: "VIDEO BLOQUEADO"
+            };
+
+            blockedMessage.innerText = messages[currentLang] || messages['en']; // По умолчанию на английском
+            blockedMessage.style.display = 'block';
+        }
+
+        // Функция для редиректа в зависимости от устройства (мобильное или десктоп)
+        function redirectUser() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Проверка на мобильное устройство
+            if (/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
+                window.location.href = 'https://offer.affimelody.com/click?pid=118208&offer_id=531#join';
+            } else {
+                window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
+            }
+        }
+
+        // Определяем язык браузера пользователя
+        const userLang = navigator.language || navigator.userLanguage;
+        const lang = userLang.startsWith('ru') ? 'ru' :
+                     userLang.startsWith('fr') ? 'fr' :
+                     userLang.startsWith('de') ? 'de' :
+                     userLang.startsWith('it') ? 'it' :
+                     userLang.startsWith('es') ? 'es' :
+                     'en';
+
+        // Меняем язык интерфейса в зависимости от языка браузера
+        changeLanguage(lang);
+
+        // Функция для изменения текста в зависимости от языка
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang; // Устанавливаем атрибут lang для всей страницы
+
+            // Перевод заголовков
+            document.getElementById('heading').innerText = translations[lang].heading;
+            document.getElementById('sub-heading').innerText = translations[lang].sub_heading;
+            document.getElementById('info-text').innerText = translations[lang].info_text;
+            document.getElementById('step1').innerText = translations[lang].step1;
+            document.getElementById('step2').innerText = translations[lang].step2;
+            document.getElementById('generate-password').innerText = translations[lang].generate_password;
+            document.getElementById('copy-password').innerText = translations[lang].copy_password;
+            document.getElementById('cta-button').innerText = translations[lang].cta_button;
+        }
+
         // Переводы
         const translations = {
             en: {
@@ -235,94 +306,12 @@
                 step1: "ВВЕДИТЕ ИМЯ ПОЛЬЗОВАТЕЛЯ",
                 step2: "ВСТАВЬТЕ ПОЛУЧЕНЫЙ ПАРОЛЬ",
                 generate_password: "ПОЛУЧИТЕ ПАРОЛЬ ДЛЯ ДОСТУПА",
-                copy_password: "Копировать пароль",
+                copy_password: "КОПИРОВАТЬ ПАРОЛЬ",
                 password_copied: "Пароль скопирован!",
                 cta_button: "Разблокировать контент XVideos сейчас бесплатно"
             },
-            fr: {
-                heading: "Accédez instantanément au contenu XVideos!",
-                sub_heading: "Bénéficiez de 380 000+ vidéos dans diverses catégories",
-                info_text: "Débloquez la section XVideos en 2 étapes simples en utilisant votre mot de passe:",
-                step1: "ENTREZ LE NOM D'UTILISATEUR",
-                step2: "COLLEZ LE MOT DE PASSE GÉNÉRÉ",
-                generate_password: "OBTENIR LE MOT DE PASSE D'ACCÈS",
-                copy_password: "Copier le mot de passe",
-                password_copied: "Mot de passe copié!",
-                cta_button: "Débloquez le contenu XVideos maintenant gratuitement"
-            },
-            de: {
-                heading: "Erhalten Sie sofortigen Zugriff auf XVideos-Inhalte!",
-                sub_heading: "GENIESSEN SIE 380.000+ VIDEOS IN VERSCHIEDENEN KATEGORIEN",
-                info_text: "Schalten Sie den XVideos-Bereich in 2 einfachen Schritten mit Ihrem Passwort frei:",
-                step1: "GEBEN SIE DEN BENUTZERNAMEN EIN",
-                step2: "FÜGEN SIE DAS GENERIERTE PASSWORT EIN",
-                generate_password: "ZUGRIFFSPASSWORT HOLEN",
-                copy_password: "Passwort kopieren",
-                password_copied: "Passwort kopiert!",
-                cta_button: "Jetzt XVideos-Inhalte kostenlos freischalten"
-            },
-            it: {
-                heading: "Accedi immediatamente ai contenuti di XVideos!",
-                sub_heading: "GODITI 380.000+ VIDEO IN DIVERSE CATEGORIE",
-                info_text: "Sblocca la sezione XVideos in 2 semplici passaggi usando la tua password:",
-                step1: "INSERISCI IL NOME UTENTE",
-                step2: "INCOLLA LA PASSWORD GENERATA",
-                generate_password: "OTTIENI LA PASSWORD DI ACCESSO",
-                copy_password: "Copia la password",
-                password_copied: "Password copiata!",
-                cta_button: "Sblocca ora i contenuti di XVideos gratuitamente"
-            },
-            es: {
-                heading: "¡Accede instantáneamente al contenido de XVideos!",
-                sub_heading: "DISFRUTA DE 380,000+ VIDEOS EN VARIAS CATEGORÍAS",
-                info_text: "Desbloquea la sección de XVideos en 2 pasos sencillos usando tu contraseña:",
-                step1: "INGRESA NOMBRE DE USUARIO",
-                step2: "PEGA LA CONTRASEÑA GENERADA",
-                generate_password: "OBTENER CONTRASEÑA DE ACCESO",
-                copy_password: "Copiar contraseña",
-                password_copied: "¡Contraseña copiada!",
-                cta_button: "Desbloquea el contenido de XVideos ahora gratis"
-            }
+            // Переводы для других языков можно добавить сюда...
         };
-
-        // Функция для изменения языка
-        function changeLanguage(lang) {
-            document.getElementById('heading').innerText = translations[lang].heading;
-            document.getElementById('sub-heading').innerText = translations[lang].sub_heading;
-            document.getElementById('info-text').innerText = translations[lang].info_text;
-            document.getElementById('step1').innerText = translations[lang].step1;
-            document.getElementById('step2').innerText = translations[lang].step2;
-            document.getElementById('generate-password').innerText = translations[lang].generate_password;
-            document.getElementById('copy-password').innerText = translations[lang].copy_password;
-            document.getElementById('notification').innerText = translations[lang].password_copied;
-            document.getElementById('cta-button').innerText = translations[lang].cta_button;
-        }
-
-        // Определяем язык браузера
-        const userLang = navigator.language || navigator.userLanguage;
-        const lang = userLang.startsWith('ru') ? 'ru' : 
-                     userLang.startsWith('fr') ? 'fr' : 
-                     userLang.startsWith('de') ? 'de' :
-                     userLang.startsWith('it') ? 'it' : 
-                     userLang.startsWith('es') ? 'es' : 'en'; // Default to English if language not supported
-        changeLanguage(lang);
-
-        // Динамическое обновление ссылки в зависимости от устройства
-        function updateLink() {
-            const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
-            const link = document.getElementById('dynamic-link');
-            const ctaButton = document.getElementById('cta-button');
-            if (isMobile) {
-                link.href = 'https://offer.affimelody.com/click?pid=118208&offer_id=531#join';
-                ctaButton.href = 'https://offer.affimelody.com/click?pid=118208&offer_id=531#join';
-            } else {
-                link.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
-                ctaButton.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
-            }
-        }
-
-        // Обновляем ссылку в зависимости от устройства
-        updateLink();
     </script>
 </body>
 </html>
