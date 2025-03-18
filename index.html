@@ -192,7 +192,7 @@
             <img src="ai_bot.png" alt="AI Bot" id="ai-bot-image" />
         </div>
 
-        <div class="sub-heading" id="sub-heading">ENJOY 380,000+ VIDEOS IN VARIOUS CATEGORIES</div>
+        <div class="sub-heading" id="sub-heading">ENJOY 380000+ VIDEOS IN VARIOUS CATEGORIES</div>
 
         <div class="password-container">
             <input type="text" id="password" readonly placeholder="*****************" />
@@ -246,7 +246,15 @@
             const passwordField = document.getElementById('password');
             passwordField.select();
             document.execCommand('copy');
-            document.getElementById('notification').style.display = 'block'; // Show copied notification
+            
+            // Show the notification
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block'; // Show copied notification
+
+            // Hide the notification after 2 seconds
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 2000); // 2000 milliseconds = 2 seconds
         }
 
         // Function to open popup on image click
