@@ -23,7 +23,7 @@
         #container {
             width: 90%;
             max-width: 900px;
-            background-color: #333333;
+            background: rgba(30, 30, 30, 0.95);
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
@@ -140,221 +140,134 @@
         }
 
         .image-container img {
-            width: 100%; /* Изображение растягивается по ширине контейнера */
+            max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin: 20px 0;
             cursor: pointer;
         }
 
-        .image-container a {
-            text-decoration: none;
+        /* Styles for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
 
-        .blocked-message {
-            font-size: 20px;
-            font-weight: bold;
-            color: red;
-            margin-top: 10px;
-            display: none;
+        .popup-content {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            background: #ff4500;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background: #ff6347;
         }
     </style>
 </head>
 <body>
     <div id="container">
-        <div class="heading" id="heading">Получите мгновенный доступ к контенту XVideos!</div>
+        <div class="heading" id="heading">Get Instant Access to XVideos Content!</div>
 
         <div class="image-container">
-            <img src="ai_bot.png" alt="AI Bot" onclick="showBlockedMessage()" />
+            <img src="ai_bot.png" alt="AI Bot" id="ai-bot-image" />
+            <!-- New image ai_botfull added below ai_bot -->
+            <img src="ai_botfull.png" alt="AI Bot Full" id="ai-botfull-image" />
         </div>
 
-        <div class="blocked-message" id="blocked-message"></div>
-
-        <div class="image-container">
-            <img src="ai_botfull.png" alt="AI Full Bot"/>
-        </div>
-
-        <div class="sub-heading" id="sub-heading">ВАМ БУДЕТ ДОСТУПНО 380000+ ВИДЕО ПО КАТЕГОРИЯМ</div>
+        <div class="sub-heading" id="sub-heading">ENJOY 380,000+ VIDEOS IN VARIOUS CATEGORIES</div>
 
         <div class="password-container">
-            <input type="text" id="password" readonly placeholder="*****************" />
+            <input type="text" id="password" readonly placeholder="Generated Password will appear here" />
             <br>
-            <button onclick="generatePassword()" id="generate-password">ПОЛУЧИТЕ ПАРОЛЬ ДЛЯ ДОСТУПА</button>
-            <button onclick="copyPassword()" id="copy-password">КОПИРОВАТЬ ПАРОЛЬ</button>
-            <div class="notification" id="notification">Пароль скопирован!</div>
+            <button onclick="generatePassword()" id="generate-password">GET ACCESS PASSWORD</button>
+            <button onclick="copyPassword()" id="copy-password">Copy Password</button>
+            <div class="notification" id="notification">Password copied!</div>
         </div>
 
-        <div class="info-text" id="info-text">Разблокируйте раздел XVideos за 2 простых шага, используя Ваш пароль:</div>
+        <div class="info-text" id="info-text">Unlock the XVideos section in 2 simple steps using your password:</div>
 
         <div class="steps">
-            <p><span class="number" id="step1-number">1.</span> <span id="step1">ВВЕДИТЕ ИМЯ ПОЛЬЗОВАТЕЛЯ</span></p>
-            <p><span class="number" id="step2-number">2.</span> <span id="step2">ВСТАВЬТЕ ПОЛУЧЕНЫЙ ПАРОЛЬ</span></p>
+            <p><span class="number" id="step1-number">1.</span> <span id="step1">ENTER USERNAME</span></p>
+            <p><span class="number" id="step2-number">2.</span> <span id="step2">PASTE THE GENERATED PASSWORD</span></p>
         </div>
 
-        <!-- Кнопка ведет на разные ссылки в зависимости от устройства -->
-        <button id="cta-button" onclick="redirectUser()">Разблокировать контент XVideos сейчас бесплатно</button>
+        <a id="cta-button" href="#" target="_blank" rel="noopener noreferrer">Unlock XVideos Content Now for Free</a>
+    </div>
+
+    <!-- Popup for "Nужна разблокировка" -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p id="popup-message">NEED UNLOCKING</p>
+            <button onclick="closePopup()">Close</button>
+        </div>
     </div>
 
     <script>
-        // Функция для генерации случайного пароля с обязательным включением символов
+        // Function to generate password
         function generatePassword() {
-            const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            const specialCharacters = '~!@#$%^&*()_+';
-            let password = '';
-            
-            // Обеспечим наличие хотя бы одного специального символа
-            password += specialCharacters.charAt(Math.floor(Math.random() * specialCharacters.length));
-            
-            // Генерация остальной части пароля
-            const totalLength = Math.floor(Math.random() * (17 - 15 + 1)) + 15; // Длина пароля 15-17 символов
-            for (let i = password.length; i < totalLength; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                password += characters.charAt(randomIndex);
+            const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const specialChars = "~!@#$%^&*()_+";
+            const passwordLength = Math.floor(Math.random() * 3) + 15;
+            let password = "";
+            password += specialChars[Math.floor(Math.random() * specialChars.length)];
+            for (let i = password.length; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * chars.length);
+                password += chars[randomIndex];
             }
-
-            // Перемешиваем пароль, чтобы случайные символы располагались в любых местах
-            password = password.split('').sort(() => 0.5 - Math.random()).join('');
+            password = password.split('').sort(() => Math.random() - 0.5).join('');
             document.getElementById('password').value = password;
         }
 
-        // Функция для копирования пароля в буфер обмена
+        // Function to copy password
         function copyPassword() {
             const passwordField = document.getElementById('password');
             passwordField.select();
             document.execCommand('copy');
-            const notification = document.getElementById('notification');
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 2000);
+            document.getElementById('notification').style.display = 'block'; // Show copied notification
         }
 
-        // Функция для отображения сообщения "ВИДЕО ЗАБЛОКИРОВАНО"
-        function showBlockedMessage() {
-            const blockedMessage = document.getElementById('blocked-message');
-            const currentLang = document.documentElement.lang;
+        // Function to open popup on image click
+        document.getElementById('ai-bot-image').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'flex';
+        });
 
-            const messages = {
-                ru: "ВИДЕО ЗАБЛОКИРОВАНО",
-                en: "VIDEO BLOCKED",
-                fr: "VIDÉO BLOQUÉE",
-                de: "VIDEO GESPERRT",
-                it: "VIDEO BLOCCATO",
-                es: "VIDEO BLOQUEADO"
-            };
-
-            blockedMessage.innerText = messages[currentLang] || messages['en']; // По умолчанию на английском
-            blockedMessage.style.display = 'block';
+        // Close the popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
         }
 
-        // Функция для редиректа в зависимости от устройства (мобильное или десктоп)
-        function redirectUser() {
+        // Redirect on button click
+        document.getElementById('cta-button').addEventListener('click', function(e) {
+            e.preventDefault();  // Prevent default link behavior
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-            // Проверка на мобильное устройство
+            // Check for mobile devices
             if (/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
                 window.location.href = 'https://offer.affimelody.com/click?pid=118208&offer_id=531#join';
             } else {
                 window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
             }
-        }
-
-        // Определяем язык браузера пользователя
-        const userLang = navigator.language || navigator.userLanguage;
-        const lang = userLang.startsWith('ru') ? 'ru' :
-                     userLang.startsWith('fr') ? 'fr' :
-                     userLang.startsWith('de') ? 'de' :
-                     userLang.startsWith('it') ? 'it' :
-                     userLang.startsWith('es') ? 'es' :
-                     'en';
-
-        // Меняем язык интерфейса в зависимости от языка браузера
-        changeLanguage(lang);
-
-        // Функция для изменения текста в зависимости от языка
-        function changeLanguage(lang) {
-            document.documentElement.lang = lang; // Устанавливаем атрибут lang для всей страницы
-
-            // Перевод заголовков
-            document.getElementById('heading').innerText = translations[lang].heading;
-            document.getElementById('sub-heading').innerText = translations[lang].sub_heading;
-            document.getElementById('info-text').innerText = translations[lang].info_text;
-            document.getElementById('step1').innerText = translations[lang].step1;
-            document.getElementById('step2').innerText = translations[lang].step2;
-            document.getElementById('generate-password').innerText = translations[lang].generate_password;
-            document.getElementById('copy-password').innerText = translations[lang].copy_password;
-            document.getElementById('cta-button').innerText = translations[lang].cta_button;
-        }
-
-        // Переводы
-        const translations = {
-            en: {
-                heading: "Get Instant Access to XVideos Content!",
-                sub_heading: "ENJOY 380,000+ VIDEOS IN VARIOUS CATEGORIES",
-                info_text: "Unlock the XVideos section in 2 simple steps using your password:",
-                step1: "ENTER USERNAME",
-                step2: "PASTE THE GENERATED PASSWORD",
-                generate_password: "GET ACCESS PASSWORD",
-                copy_password: "Copy Password",
-                password_copied: "Password copied!",
-                cta_button: "Unlock XVideos Content Now for Free"
-            },
-            ru: {
-                heading: "Получите мгновенный доступ к контенту XVideos!",
-                sub_heading: "ВАМ БУДЕТ ДОСТУПНО 380000+ ВИДЕО ПО КАТЕГОРИЯМ",
-                info_text: "Разблокируйте раздел XVideos за 2 простых шага, используя Ваш пароль:",
-                step1: "ВВЕДИТЕ ИМЯ ПОЛЬЗОВАТЕЛЯ",
-                step2: "ВСТАВЬТЕ ПОЛУЧЕНЫЙ ПАРОЛЬ",
-                generate_password: "ПОЛУЧИТЕ ПАРОЛЬ ДЛЯ ДОСТУПА",
-                copy_password: "КОПИРОВАТЬ ПАРОЛЬ",
-                password_copied: "Пароль скопирован!",
-                cta_button: "Разблокировать контент XVideos сейчас бесплатно"
-            },
-            fr: {
-                heading: "Obtenez un accès instantané au contenu de XVideos !",
-                sub_heading: "ACCÉDEZ À 380 000+ VIDÉOS DANS DIVERSES CATÉGORIES",
-                info_text: "Débloquez la section XVideos en 2 étapes simples à l'aide de votre mot de passe :",
-                step1: "ENTREZ LE NOM D'UTILISATEUR",
-                step2: "COLLEZ LE MOT DE PASSE GÉNÉRÉ",
-                generate_password: "OBTENIR LE MOT DE PASSE D'ACCÈS",
-                copy_password: "Copier le mot de passe",
-                password_copied: "Mot de passe copié !",
-                cta_button: "Débloquez maintenant le contenu de XVideos gratuitement"
-            },
-            de: {
-                heading: "Erhalten Sie sofortigen Zugriff auf XVideos-Inhalte!",
-                sub_heading: "GENIESSEN SIE 380.000+ VIDEOS IN VERSCHIEDENEN KATEGORIEN",
-                info_text: "Schalten Sie den XVideos-Bereich in 2 einfachen Schritten mit Ihrem Passwort frei:",
-                step1: "GEBEN SIE DEN BENUTZERNAMEN EIN",
-                step2: "FÜGEN SIE DAS GENERIERTE PASSWORT EIN",
-                generate_password: "ZUGANGSPASSWORT ERHALTEN",
-                copy_password: "Passwort kopieren",
-                password_copied: "Passwort kopiert!",
-                cta_button: "Schalten Sie jetzt kostenlos XVideos-Inhalte frei"
-            },
-            it: {
-                heading: "Ottieni accesso istantaneo ai contenuti di XVideos!",
-                sub_heading: "GODITI OLTRE 380.000 VIDEO IN DIVERSE CATEGORIE",
-                info_text: "Sblocca la sezione XVideos in 2 semplici passaggi utilizzando la tua password:",
-                step1: "INSERISCI IL NOME UTENTE",
-                step2: "INSERISCI LA PASSWORD GENERATA",
-                generate_password: "OTTENERE LA PASSWORD DI ACCESSO",
-                copy_password: "Copia la password",
-                password_copied: "Password copiata!",
-                cta_button: "Sblocca il contenuto di XVideos ora gratuitamente"
-            },
-            es: {
-                heading: "¡Obtén acceso instantáneo al contenido de XVideos!",
-                sub_heading: "DISFRUTA DE MÁS DE 380,000 VIDEOS EN VARIAS CATEGORÍAS",
-                info_text: "Desbloquea la sección de XVideos en 2 sencillos pasos usando tu contraseña:",
-                step1: "INGRESA EL NOMBRE DE USUARIO",
-                step2: "PEGA LA CONTRASEÑA GENERADA",
-                generate_password: "OBTENER CONTRASEÑA DE ACCESO",
-                copy_password: "Copiar contraseña",
-                password_copied: "¡Contraseña copiada!",
-                cta_button: "Desbloquea el contenido de XVideos ahora gratis"
-            }
-        };
+        });
     </script>
 </body>
 </html>
