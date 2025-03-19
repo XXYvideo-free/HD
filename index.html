@@ -60,6 +60,15 @@
             -webkit-background-clip: text;
             color: transparent;
             font-weight: bold;
+            text-align: center;
+        }
+
+        .sub-info-text {
+            font-size: 20px;
+            color: #fff;
+            text-transform: uppercase;
+            margin: 10px 0;
+            font-weight: bold;
         }
 
         .steps {
@@ -204,7 +213,14 @@
             <div class="notification" id="notification">Password copied!</div>
         </div>
 
-        <div class="info-text" id="info-text">Unlock the XVideos section in 2 easy steps, it takes a few seconds, no e-mail needed! Just use this password:</div>
+        <!-- First Text (Main) -->
+        <div class="info-text" id="info-text">Unlock the XVideos section in 2 easy steps, it takes a few seconds!</div>
+
+        <!-- Second Text (Uppercase) -->
+        <div class="sub-info-text">NO E-MAIL NEEDED!</div>
+
+        <!-- Third Text (Password Instruction) -->
+        <div class="info-text" id="info-text">Just use this password:</div>
 
         <div class="steps">
             <p><span class="number" id="step1-number">1.</span> <span id="step1">ENTER USERNAME</span></p>
@@ -225,7 +241,7 @@
     <div id="popup" class="popup">
         <div class="popup-content">
             <p id="popup-message">NEED UNLOCKING</p>
-            <button onclick="closePopup()">Close</button>
+            <button onclick="closePopup()">GO</button>
         </div>
     </div>
 
