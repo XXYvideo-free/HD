@@ -22,11 +22,18 @@
             position: relative;
         }
 
-        #google_translate_element {
+        /* Center the Google Translate widget container above the main content */
+        #google-translate-container {
             position: absolute;
             top: 20px;
-            right: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
             z-index: 1000;
+        }
+
+        #google_translate_element {
+            display: inline-block;
         }
 
         #container {
@@ -37,7 +44,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
-            margin: 20px 0;
+            margin-top: 60px; /* Add margin-top to ensure it doesn’t overlap with the widget */
         }
 
         .heading {
@@ -200,19 +207,13 @@
         .popup button:hover {
             background: #ff6347;
         }
-
-        /* White text in Google Translate widget for mobile */
-        @media (max-width: 768px) {
-            #google_translate_element select {
-                color: white !important;
-                background-color: transparent !important;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Google Translate widget -->
-    <div id="google_translate_element"></div>
+    <!-- Google Translate widget container placed at the top -->
+    <div id="google-translate-container">
+        <div id="google_translate_element"></div>
+    </div>
 
     <div id="container">
         <div class="heading" id="heading">Disable VPN For Access!</div>
