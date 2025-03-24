@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
-    <meta name="google" content="translate: yes"> <!-- Added for automatic translation -->
+    <meta name="google" content="translate: yes">
     <title>XVideos Access</title>
     <style>
         body, html {
@@ -20,6 +20,13 @@
             justify-content: center;
             align-items: flex-start;
             position: relative;
+        }
+
+        #google_translate_element {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
         }
 
         #container {
@@ -196,6 +203,9 @@
     </style>
 </head>
 <body>
+    <!-- Google Translate widget -->
+    <div id="google_translate_element"></div>
+
     <div id="container">
         <div class="heading" id="heading">Disable VPN For Access!</div>
 
@@ -213,13 +223,10 @@
             <div class="notification" id="notification">Password copied!</div>
         </div>
 
-        <!-- First Text (Main) -->
         <div class="info-text" id="info-text">Unlock the XVideos section in 2 easy steps, it takes a few seconds!</div>
 
-        <!-- Second Text (Uppercase) -->
         <div class="sub-info-text">NO E-MAIL NEEDED!</div>
 
-        <!-- Third Text (Password Instruction) -->
         <div class="info-text" id="info-text">Just use this password:</div>
 
         <div class="steps">
@@ -229,7 +236,6 @@
 
         <a id="cta-button" href="#" target="_blank" rel="noopener noreferrer">CHECK IT OUT! IT'S FAST AND FREE!</a>
 
-        <!-- New image ai_botfull with link -->
         <div class="image-container">
             <a href="https://xxyvideo-free.github.io/free/" target="_blank" rel="noopener noreferrer">
                 <img src="ai_botfull.png" alt="AI Bot Full" id="ai-botfull-image" />
@@ -237,7 +243,6 @@
         </div>
     </div>
 
-    <!-- Popup for "Nужна разблокировка" -->
     <div id="popup" class="popup">
         <div class="popup-content">
             <p id="popup-message">NEED UNLOCKING</p>
@@ -267,11 +272,9 @@
             passwordField.select();
             document.execCommand('copy');
             
-            // Show the notification
             const notification = document.getElementById('notification');
-            notification.style.display = 'block'; // Show copied notification
+            notification.style.display = 'block';
 
-            // Hide the notification after 2 seconds
             setTimeout(function() {
                 notification.style.display = 'none';
             }, 2000); // 2000 milliseconds = 2 seconds
@@ -289,16 +292,26 @@
 
         // Redirect on button click
         document.getElementById('cta-button').addEventListener('click', function(e) {
-            e.preventDefault();  // Prevent default link behavior
+            e.preventDefault(); 
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-            // Check for mobile devices
             if (/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
-                window.location.href = 'https://offer.affimelody.com/click?pid=118208&offer_id=531#join';
+                window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531#join';
             } else {
                 window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
             }
         });
+
+        // Google Translate initialization
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: true // Auto-translate based on browser language
+            }, 'google_translate_element');
+        }
     </script>
+
+    <!-- Load Google Translate API -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
