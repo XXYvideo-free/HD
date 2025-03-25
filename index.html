@@ -22,7 +22,6 @@
             position: relative;
         }
 
-        /* Center the Google Translate widget container above the main content */
         #google-translate-container {
             position: absolute;
             top: 20px;
@@ -32,15 +31,9 @@
             z-index: 1000;
         }
 
-        /* Hide the top bar of the Google Translate widget */
-        .goog-te-banner-frame {
-            display: none !important;
-        }
-
-        /* Make the Google Translate widget dark gray on mobile */
         @media (max-width: 768px) {
             #google_translate_element {
-                background-color: #333;  /* Dark gray background */
+                background-color: #333;
                 border-radius: 5px;
                 padding: 5px;
             }
@@ -54,7 +47,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
-            margin-top: 80px; /* Increase space between the widget and container */
+            margin-top: 80px;
         }
 
         .heading {
@@ -132,7 +125,7 @@
         }
 
         .password-container {
-            margin: 30px 0; /* Increased margin for more space between containers */
+            margin: 30px 0;
             text-align: center;
         }
 
@@ -182,7 +175,6 @@
             cursor: pointer;
         }
 
-        /* Styles for the popup */
         .popup {
             display: none;
             position: fixed;
@@ -220,7 +212,6 @@
     </style>
 </head>
 <body>
-    <!-- Google Translate widget container placed at the top -->
     <div id="google-translate-container">
         <div id="google_translate_element"></div>
     </div>
@@ -270,39 +261,61 @@
     </div>
 
     <script>
-        // Function to hide the Google Translate banner once the page is loaded
-        function removeTranslateBanner() {
-            const bannerFrame = document.querySelector('.goog-te-banner-frame');
-            if (bannerFrame) {
-                bannerFrame.style.display = 'none'; // Hide banner
+        function generatePassword() {
+            const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const specialChars = "~!@#$%^&*()_+";
+            const passwordLength = Math.floor(Math.random() * 3) + 15;
+            let password = "";
+            password += specialChars[Math.floor(Math.random() * specialChars.length)];
+            for (let i = password.length; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * chars.length);
+                password += chars[randomIndex];
             }
+            password = password.split('').sort(() => Math.random() - 0.5).join('');
+            document.getElementById('password').value = password;
         }
 
-        // Google Translate initialization
+        function copyPassword() {
+            const passwordField = document.getElementById('password');
+            passwordField.select();
+            document.execCommand('copy');
+            
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block';
+
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+
+        document.getElementById('ai-bot-image').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'flex';
+        });
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        document.getElementById('cta-button').addEventListener('click', function(e) {
+            e.preventDefault(); // Останавливаем стандартное поведение кнопки
+
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
+                window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531#join'; // Для мобильных устройств
+            } else {
+                window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join'; // Для десктопных устройств
+            }
+        });
+
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
-                autoDisplay: true // Auto-translate based on browser language
+                autoDisplay: true
             }, 'google_translate_element');
-
-            // Call removeTranslateBanner after the widget is initialized
-            setTimeout(removeTranslateBanner, 500);
         }
-
-        // Listen for language change event and hide the banner again if it appears
-        document.addEventListener("DOMContentLoaded", function() {
-            const interval = setInterval(function() {
-                removeTranslateBanner();
-            }, 500);
-
-            // Stop interval once the page is fully loaded
-            setTimeout(function() {
-                clearInterval(interval);
-            }, 5000);
-        });
     </script>
 
-    <!-- Load Google Translate API -->
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
