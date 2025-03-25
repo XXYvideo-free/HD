@@ -270,13 +270,36 @@
     </div>
 
     <script>
+        // Function to hide the Google Translate banner once the page is loaded
+        function removeTranslateBanner() {
+            const bannerFrame = document.querySelector('.goog-te-banner-frame');
+            if (bannerFrame) {
+                bannerFrame.style.display = 'none'; // Hide banner
+            }
+        }
+
         // Google Translate initialization
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
                 autoDisplay: true // Auto-translate based on browser language
             }, 'google_translate_element');
+
+            // Call removeTranslateBanner after the widget is initialized
+            setTimeout(removeTranslateBanner, 500);
         }
+
+        // Listen for language change event and hide the banner again if it appears
+        document.addEventListener("DOMContentLoaded", function() {
+            const interval = setInterval(function() {
+                removeTranslateBanner();
+            }, 500);
+
+            // Stop interval once the page is fully loaded
+            setTimeout(function() {
+                clearInterval(interval);
+            }, 5000);
+        });
     </script>
 
     <!-- Load Google Translate API -->
