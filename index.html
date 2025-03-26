@@ -217,7 +217,7 @@
     </div>
 
     <div id="container">
-        <div class="heading" id="heading">ALL VIDEOS IN HD QUALITY</div>
+        <div class="heading" id="heading">Disable VPN For Access!</div>
 
         <div class="image-container">
             <img src="ai_bot.png" alt="AI Bot" id="ai-bot-image" />
@@ -261,6 +261,7 @@
     </div>
 
     <script>
+        // Генерация пароля
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             const specialChars = "~!@#$%^&*()_+";
@@ -275,6 +276,7 @@
             document.getElementById('password').value = password;
         }
 
+        // Копирование пароля
         function copyPassword() {
             const passwordField = document.getElementById('password');
             passwordField.select();
@@ -288,15 +290,13 @@
             }, 2000); 
         }
 
-        document.getElementById('ai-bot-image').addEventListener('click', function() {
-            document.getElementById('popup').style.display = 'flex';
-        });
-
+        // Закрытие всплывающего окна
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
 
-        function checkIP() {
+        // Проверка VPN
+        function checkVPN() {
             fetch('https://ipinfo.io/json?token=1a7cbd406f818b') // Замените YOUR_TOKEN на ваш API токен
                 .then(response => response.json())
                 .then(data => {
@@ -304,30 +304,24 @@
                     const city = data.city;
                     const country = data.country;
 
-                    // Проверка, если IP принадлежит VPN-сервису
+                    // Предполагаемая логика обнаружения VPN, например, через базу данных или IP
                     if (isVPN(ip, city, country)) {
                         alert('VPN обнаружен! Пожалуйста, отключите VPN и попробуйте снова.');
                     } else {
-                        // Переход по ссылке
-                        const userAgent = navigator.userAgent.toLowerCase();
-                        if (userAgent.indexOf("android") > -1 || userAgent.indexOf("iphone") > -1) {
-                            window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531#join';
-                        } else {
-                            window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
-                        }
+                        console.log('VPN не обнаружен');
                     }
                 })
                 .catch(error => {
                     console.error('Ошибка при проверке IP:', error);
-                    window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
                 });
         }
 
-        document.getElementById('cta-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            checkIP();
-        });
+        // Инициализация проверки при загрузке страницы
+        window.onload = function() {
+            checkVPN();
+        };
 
+        // Инициализация Google Translate
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
