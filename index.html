@@ -221,7 +221,7 @@
     </div>
 
     <div id="container">
-        <div class="heading" id="heading">Disable VPN For Access!</div>
+        <div class="heading" id="heading">ALL VIDEOS IN HD QUALITY</div>
 
         <div class="image-container">
             <img src="ai_bot.png" alt="AI Bot" id="ai-bot-image" />
@@ -304,23 +304,29 @@
             document.getElementById('popup').style.display = 'none';
         }
 
-        // Redirect on button click
-        document.getElementById('cta-button').addEventListener('click', function(e) {
-            e.preventDefault(); 
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        // Detect VPN
+        function detectVPN() {
+            fetch('https://ipinfo.io/json')
+                .then(response => response.json())
+                .then(data => {
+                    const vpnDetected = data.org && data.org.includes('VPN');
+                    if (vpnDetected) {
+                        document.getElementById('popup-message').textContent = 'VPN detected! Please disable it to continue.';
+                        document.getElementById('popup').style.display = 'flex';
+                    }
+                });
+        }
 
-            if (/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
-                window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531#join';
-            } else {
-                window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
-            }
-        });
+        // Run VPN detection on page load
+        window.onload = function() {
+            detectVPN();
+        };
 
         // Google Translate initialization
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
-                autoDisplay: true // Auto-translate based on browser language
+                autoDisplay: true
             }, 'google_translate_element');
         }
     </script>
