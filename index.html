@@ -22,6 +22,7 @@
             position: relative;
         }
 
+        /* Center the Google Translate widget container above the main content */
         #google-translate-container {
             position: absolute;
             top: 20px;
@@ -31,9 +32,10 @@
             z-index: 1000;
         }
 
+        /* Make the Google Translate widget dark gray on mobile */
         @media (max-width: 768px) {
             #google_translate_element {
-                background-color: #333;
+                background-color: #333;  /* Dark gray background */
                 border-radius: 5px;
                 padding: 5px;
             }
@@ -47,7 +49,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
-            margin-top: 80px;
+            margin-top: 80px; /* Increase space between the widget and container */
         }
 
         .heading {
@@ -125,7 +127,7 @@
         }
 
         .password-container {
-            margin: 30px 0;
+            margin: 30px 0; /* Increased margin for more space between containers */
             text-align: center;
         }
 
@@ -175,6 +177,7 @@
             cursor: pointer;
         }
 
+        /* Styles for the popup */
         .popup {
             display: none;
             position: fixed;
@@ -212,12 +215,13 @@
     </style>
 </head>
 <body>
+    <!-- Google Translate widget container placed at the top -->
     <div id="google-translate-container">
         <div id="google_translate_element"></div>
     </div>
 
     <div id="container">
-        <div class="heading" id="heading">Disable VPN For Access!</div>
+        <div class="heading" id="heading">Temporarily Disable VPN For Access!</div>
 
         <div class="image-container">
             <img src="ai_bot.png" alt="AI Bot" id="ai-bot-image" />
@@ -261,7 +265,7 @@
     </div>
 
     <script>
-        // Генерация пароля
+        // Function to generate password
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             const specialChars = "~!@#$%^&*()_+";
@@ -276,7 +280,7 @@
             document.getElementById('password').value = password;
         }
 
-        // Копирование пароля
+        // Function to copy password
         function copyPassword() {
             const passwordField = document.getElementById('password');
             passwordField.select();
@@ -287,49 +291,41 @@
 
             setTimeout(function() {
                 notification.style.display = 'none';
-            }, 2000); 
+            }, 2000); // 2000 milliseconds = 2 seconds
         }
 
-        // Закрытие всплывающего окна
+        // Function to open popup on image click
+        document.getElementById('ai-bot-image').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'flex';
+        });
+
+        // Close the popup
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
 
-        // Проверка VPN
-        function checkVPN() {
-            fetch('https://ipinfo.io/json?token=1a7cbd406f818b') // Замените YOUR_TOKEN на ваш API токен
-                .then(response => response.json())
-                .then(data => {
-                    const ip = data.ip;
-                    const city = data.city;
-                    const country = data.country;
+        // Redirect on button click
+        document.getElementById('cta-button').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-                    // Предполагаемая логика обнаружения VPN, например, через базу данных или IP
-                    if (isVPN(ip, city, country)) {
-                        alert('VPN обнаружен! Пожалуйста, отключите VPN и попробуйте снова.');
-                    } else {
-                        console.log('VPN не обнаружен');
-                    }
-                })
-                .catch(error => {
-                    console.error('Ошибка при проверке IP:', error);
-                });
-        }
+            if (/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
+                window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531#join';
+            } else {
+                window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
+            }
+        });
 
-        // Инициализация проверки при загрузке страницы
-        window.onload = function() {
-            checkVPN();
-        };
-
-        // Инициализация Google Translate
+        // Google Translate initialization
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
-                autoDisplay: true
+                autoDisplay: true // Auto-translate based on browser language
             }, 'google_translate_element');
         }
     </script>
 
+    <!-- Load Google Translate API -->
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
