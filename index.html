@@ -22,7 +22,6 @@
             position: relative;
         }
 
-        /* Center the Google Translate widget container above the main content */
         #google-translate-container {
             position: absolute;
             top: 20px;
@@ -32,10 +31,9 @@
             z-index: 1000;
         }
 
-        /* Make the Google Translate widget dark gray on mobile */
         @media (max-width: 768px) {
             #google_translate_element {
-                background-color: #333;  /* Dark gray background */
+                background-color: #333;
                 border-radius: 5px;
                 padding: 5px;
             }
@@ -49,7 +47,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
-            margin-top: 80px; /* Increase space between the widget and container */
+            margin-top: 80px;
         }
 
         .heading {
@@ -127,7 +125,7 @@
         }
 
         .password-container {
-            margin: 30px 0; /* Increased margin for more space between containers */
+            margin: 30px 0;
             text-align: center;
         }
 
@@ -177,7 +175,6 @@
             cursor: pointer;
         }
 
-        /* Styles for the popup */
         .popup {
             display: none;
             position: fixed;
@@ -215,7 +212,6 @@
     </style>
 </head>
 <body>
-    <!-- Google Translate widget container placed at the top -->
     <div id="google-translate-container">
         <div id="google_translate_element"></div>
     </div>
@@ -265,7 +261,6 @@
     </div>
 
     <script>
-        // Function to generate password
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             const specialChars = "~!@#$%^&*()_+";
@@ -280,7 +275,6 @@
             document.getElementById('password').value = password;
         }
 
-        // Function to copy password
         function copyPassword() {
             const passwordField = document.getElementById('password');
             passwordField.select();
@@ -291,38 +285,49 @@
 
             setTimeout(function() {
                 notification.style.display = 'none';
-            }, 2000); // 2000 milliseconds = 2 seconds
+            }, 2000); 
         }
 
-        // Function to open popup on image click
         document.getElementById('ai-bot-image').addEventListener('click', function() {
             document.getElementById('popup').style.display = 'flex';
         });
 
-        // Close the popup
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
 
-        // Detect VPN
-        function detectVPN() {
-            fetch('https://ipinfo.io/json')
+        function checkIP() {
+            fetch('https://ipinfo.io/json?token=1a7cbd406f818b') // Замените YOUR_TOKEN на ваш API токен
                 .then(response => response.json())
                 .then(data => {
-                    const vpnDetected = data.org && data.org.includes('VPN');
-                    if (vpnDetected) {
-                        document.getElementById('popup-message').textContent = 'VPN detected! Please disable it to continue.';
-                        document.getElementById('popup').style.display = 'flex';
+                    const ip = data.ip;
+                    const city = data.city;
+                    const country = data.country;
+
+                    // Проверка, если IP принадлежит VPN-сервису
+                    if (isVPN(ip, city, country)) {
+                        alert('VPN обнаружен! Пожалуйста, отключите VPN и попробуйте снова.');
+                    } else {
+                        // Переход по ссылке
+                        const userAgent = navigator.userAgent.toLowerCase();
+                        if (userAgent.indexOf("android") > -1 || userAgent.indexOf("iphone") > -1) {
+                            window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531#join';
+                        } else {
+                            window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
+                        }
                     }
+                })
+                .catch(error => {
+                    console.error('Ошибка при проверке IP:', error);
+                    window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531&redirect=https://bongacams.com/members/join';
                 });
         }
 
-        // Run VPN detection on page load
-        window.onload = function() {
-            detectVPN();
-        };
+        document.getElementById('cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            checkIP();
+        });
 
-        // Google Translate initialization
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
@@ -331,7 +336,6 @@
         }
     </script>
 
-    <!-- Load Google Translate API -->
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
