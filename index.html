@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
-    <meta name="google" content="translate: yes"> <!-- Added for automatic translation -->
+    <meta name="google" content="translate: yes">
     <title>XVideos Access - Multilingual</title>
     <style>
         body, html {
@@ -194,6 +194,18 @@
             background: #ff6347;
         }
     </style>
+    
+    <script type="text/javascript">
+        // Function to initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', // Set this to your default language
+                autoDisplay: false,
+                includedLanguages: 'en,fr,de,es,ru', // Languages to include
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
 </head>
 <body>
     <!-- Google Translate Widget -->
@@ -306,6 +318,7 @@
         });
     </script>
 
+    <!-- Google Translate API script -->
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
