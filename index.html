@@ -22,6 +22,22 @@
             position: relative;
         }
 
+        /* Google Translate Container */
+        #google-translate-container {
+            width: 100%;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            position: absolute;
+            top: 0;
+        }
+
+        #google_translate_element {
+            color: #fff;
+        }
+
         #container {
             width: 90%;
             max-width: 900px;
@@ -30,7 +46,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
-            margin: 20px 0;
+            margin-top: 80px; /* Added margin to give space for the Translate widget */
         }
 
         .heading {
@@ -195,8 +211,8 @@
     </style>
 </head>
 <body>
-    <!-- Google Translate Widget -->
-    <div id="google-translate-container" style="position: absolute; top: 20px; width: 100%; display: flex; justify-content: center; z-index: 1000;">
+    <!-- Google Translate Widget Container -->
+    <div id="google-translate-container">
         <div id="google_translate_element"></div>
     </div>
 
@@ -249,7 +265,7 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en', // Укажите язык страницы
-                includedLanguages: 'en,es,fr,de,it,ru,zh,ja', // Укажите список доступных языков для перевода
+                includedLanguages: 'af,sq,am,ar,hy,bn,bos,ca,hr,cs,da,nl,en,et,tl,fi,fr,de,el,gu,hi,hu,is,id,it,ja,kn,ko,la,lv,lt,mk,ml,ne,pl,pt,ro,ru,si,sk,sl,es,sv,ta,te,tr,uk,ur,vi,cy,zu', // Все доступные языки
                 autoDisplay: true // Автоматическое отображение виджета перевода
             }, 'google_translate_element');
         }
@@ -284,11 +300,15 @@
             const passwordField = document.getElementById('password');
             passwordField.select();
             document.execCommand('copy');
+            
+            // Show the notification
             const notification = document.getElementById('notification');
-            notification.style.display = 'block';
+            notification.style.display = 'block'; // Show copied notification
+
+            // Hide the notification after 2 seconds
             setTimeout(function() {
                 notification.style.display = 'none';
-            }, 2000);
+            }, 2000); // 2000 milliseconds = 2 seconds
         }
 
         // Function to open popup on image click
@@ -296,13 +316,17 @@
             document.getElementById('popup').style.display = 'flex';
         });
 
+        // Close the popup
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
 
+        // Redirect on button click
         document.getElementById('cta-button').addEventListener('click', function(e) {
-            e.preventDefault();
+            e.preventDefault();  // Prevent default link behavior
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Check for mobile devices
             if (/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
                 window.location.href = 'https://offers.affimelody.com/click?pid=118208&offer_id=531#join';
             } else {
