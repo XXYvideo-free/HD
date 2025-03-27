@@ -22,7 +22,6 @@
             position: relative;
         }
 
-        /* Center the Google Translate widget container above the main content */
         #google-translate-container {
             position: absolute;
             top: 20px;
@@ -32,10 +31,9 @@
             z-index: 1000;
         }
 
-        /* Make the Google Translate widget dark gray on mobile */
         @media (max-width: 768px) {
             #google_translate_element {
-                background-color: #333;  /* Dark gray background */
+                background-color: #333;
                 border-radius: 5px;
                 padding: 5px;
             }
@@ -44,12 +42,12 @@
         #container {
             width: 90%;
             max-width: 900px;
-            background-color: #000; /* Черный фон */
+            background-color: #000;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
-            margin-top: 80px; /* Increased space between the widget and container */
+            margin-top: 80px;
         }
 
         .heading {
@@ -127,7 +125,7 @@
         }
 
         .password-container {
-            margin: 30px 0; /* Increased margin for more space between containers */
+            margin: 30px 0;
             text-align: center;
         }
 
@@ -177,7 +175,6 @@
             cursor: pointer;
         }
 
-        /* Styles for the popup */
         .popup {
             display: none;
             position: fixed;
@@ -212,20 +209,26 @@
         .popup button:hover {
             background: #ff6347;
         }
+
+        video {
+            width: 25%; /* 75% smaller */
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.8);
+        }
+
     </style>
 </head>
 <body>
-    <!-- Google Translate widget container placed at the top -->
     <div id="google-translate-container">
         <div id="google_translate_element"></div>
     </div>
 
     <div id="container">
-        <div class="heading" id="heading"> WATCH FULL VIDEOS IN HD</div>
+        <div class="heading" id="heading">WATCH FULL VIDEOS IN HD</div>
 
-        <!-- Video that plays once automatically, then stops -->
         <div class="image-container">
-            <video id="ai-bot-video" width="33%" autoplay muted>
+            <video id="ai-bot-video" muted>
                 <source src="woman.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -269,7 +272,7 @@
     </div>
 
     <script>
-        // Function to generate password
+        // Password generation functionality
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             const specialChars = "~!@#$%^&*()_+";
@@ -284,7 +287,6 @@
             document.getElementById('password').value = password;
         }
 
-        // Function to copy password
         function copyPassword() {
             const passwordField = document.getElementById('password');
             passwordField.select();
@@ -298,19 +300,28 @@
             }, 2000); // 2000 milliseconds = 2 seconds
         }
 
-        // Function to open popup on image click
-        document.getElementById('ai-bot-image').addEventListener('click', function() {
-            document.getElementById('popup').style.display = 'flex';
+        // Video interaction functionality
+        const video = document.getElementById('ai-bot-video');
+        
+        video.addEventListener('click', function() {
+            this.currentTime = 0; // Reset time
+            this.play(); // Restart video
         });
 
-        // Close the popup
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
+        video.oncanplaythrough = function() {
+            video.play(); // Auto play when video is ready
+        };
+
+        // Translate functionality
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: true // Auto-translate based on browser language
+            }, 'google_translate_element');
         }
 
-        // Redirect on button click
         document.getElementById('cta-button').addEventListener('click', function(e) {
-            e.preventDefault(); 
+            e.preventDefault();
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
             if (/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) {
@@ -319,35 +330,8 @@
                 window.location.href = 'https://xxyvideo-free.github.io/Player/';
             }
         });
-
-        // Google Translate initialization
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                autoDisplay: true // Auto-translate based on browser language
-            }, 'google_translate_element');
-        }
-
-        // Make sure the video plays automatically and without controls
-        const video = document.getElementById('ai-bot-video');
-        video.play();
-        video.muted = true; // Mute the video (required for autoplay to work)
-
-        // Stop the video when it ends and allow replay on click
-        video.addEventListener('ended', function() {
-            this.pause();
-        });
-
-        // Play the video again when clicked
-        video.addEventListener('click', function() {
-            if (this.paused) {
-                this.currentTime = 0;  // Reset the video to the start
-                this.play();           // Start the video from the beginning
-            }
-        });
     </script>
 
-    <!-- Load Google Translate API -->
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
