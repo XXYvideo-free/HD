@@ -34,8 +34,15 @@
             top: 0;
         }
 
-        #google_translate_element {
-            color: #fff;
+        /* Apply white background for mobile devices */
+        @media only screen and (max-width: 768px) {
+            #google-translate-container {
+                background: #fff; /* White background for mobile */
+            }
+
+            #google_translate_element {
+                color: #000; /* Adjust text color for contrast */
+            }
         }
 
         #container {
