@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
-    <meta name="google" content="translate: yes"> <!-- Google Translate meta tag -->
+    <meta name="google" content="translate: yes">
     <title>XVideos Access - Multilingual</title>
     <style>
         body, html {
@@ -37,11 +37,11 @@
         /* Apply white background for mobile devices */
         @media only screen and (max-width: 768px) {
             #google-translate-container {
-                background: #fff; /* White background for mobile */
+                background: #fff;
             }
 
             #google_translate_element {
-                color: #000; /* Adjust text color for contrast */
+                color: #000;
             }
         }
 
@@ -53,7 +53,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
-            margin-top: 80px; /* Added margin to give space for the Translate widget */
+            margin-top: 80px;
         }
 
         .heading {
@@ -157,7 +157,7 @@
         .image-container img {
             max-width: 100%;
             height: auto;
-            object-fit: contain; /* Ensures the image fits inside the container */
+            object-fit: contain;
             border-radius: 8px;
             margin: 20px 0;
             cursor: pointer;
@@ -198,32 +198,16 @@
             background: #ff6347;
         }
 
-        /* Style for registration redirect page */
-        .registration-container {
-            padding: 50px;
-            text-align: center;
-            background: #1a1a1a;
-            color: #fff;
-        }
-
-        .registration-container button {
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
-            text-transform: uppercase;
+        /* Сообщение об ошибке */
+        #error-message {
+            display: none;
+            color: #ff0000;
+            background-color: #1a1a1a;
+            padding: 15px;
             border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            cursor: pointer;
-            border: none;
-        }
-
-        .registration-container button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
@@ -260,7 +244,9 @@
             <p><span class="number" id="step2-number">2.</span> <span id="step2"> PASTE PASSWORD.</span></p>
         </div>
 
-        <!-- Registration Redirect Section -->
+        <!-- Сообщение об ошибке -->
+        <div id="error-message">Please generate and copy the password before unlocking.</div>
+
         <div class="registration-container">
             <h1>Join Now for Free!</h1>
             <p>Hold down the password field to insert:</p>
@@ -282,11 +268,15 @@
     </div>
 
     <script>
-        // Function to generate password
+        // Флаг для отслеживания состояния генерации и копирования пароля
+        let passwordGenerated = false;
+        let passwordCopied = false;
+
+        // Функция для генерации пароля
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             const specialChars = "~!@#$%^&*()_+";
-            const passwordLength = 16; // Fixing the length of the password
+            const passwordLength = 16; // Фиксированная длина пароля
             let password = "";
             password += specialChars[Math.floor(Math.random() * specialChars.length)];
             for (let i = password.length; i < passwordLength; i++) {
@@ -295,52 +285,68 @@
             }
             password = password.split('').sort(() => Math.random() - 0.5).join(''); 
             document.getElementById('password').value = password;
+
+            passwordGenerated = true; // Устанавливаем флаг, что пароль сгенерирован
+
+            // Скрываем сообщение об ошибке, если пароль сгенерирован
+            document.getElementById('error-message').style.display = 'none';
         }
 
-        // Function to copy password
+        // Функция для копирования пароля
         function copyPassword() {
             const passwordField = document.getElementById('password');
             passwordField.select();
             document.execCommand('copy');
             
-            // Show the notification
+            // Показываем уведомление
             const notification = document.getElementById('notification');
-            notification.style.display = 'block'; // Show copied notification
+            notification.style.display = 'block'; // Показываем уведомление о копировании
 
-            // Hide the notification after 2 seconds
+            // Скрываем уведомление через 2 секунды
             setTimeout(function() {
                 notification.style.display = 'none';
-            }, 2000); // 2000 milliseconds = 2 seconds
+            }, 2000); // 2000 миллисекунд = 2 секунды
+
+            passwordCopied = true; // Устанавливаем флаг, что пароль скопирован
+
+            // Скрываем сообщение об ошибке, если пароль скопирован
+            document.getElementById('error-message').style.display = 'none';
         }
 
-        // Function to open popup on image click
+        // Функция для открытия всплывающего окна при клике на изображение
         document.getElementById('ai-bot-image').addEventListener('click', function() {
             document.getElementById('popup').style.display = 'flex';
         });
 
-        // Close the popup
+        // Закрытие всплывающего окна
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
 
-        // Registration redirect function
+        // Регистрация и редирект
         document.getElementById('cta-button').addEventListener('click', function(e) {
-            e.preventDefault(); // Prevents the default action
+            e.preventDefault(); // Предотвращаем стандартное поведение
+
+            // Если пароль не сгенерирован или не скопирован, показываем сообщение
+            if (!passwordGenerated || !passwordCopied) {
+                document.getElementById('error-message').style.display = 'block';
+                return; // Прерываем выполнение, если условия не выполнены
+            }
 
             let affiliateLink = "https://offer.affimelody.com/click?pid=118208&offer_id=531";
             let mobileLink = "https://offer.affimelody.com/click?pid=118208&offer_id=531#join";
             let targetURL = "https://bongacams.com/members/join";
 
-            // Function to check if the device is mobile
+            // Функция для проверки мобильного устройства
             function isMobileDevice() {
                 return /Mobi|Android/i.test(navigator.userAgent);
             }
 
-            // If the device is mobile, use the direct link
+            // Если устройство мобильное, используем прямую ссылку
             if (isMobileDevice()) {
-                window.location.href = mobileLink; // Redirect directly for mobile devices
+                window.location.href = mobileLink; // Перенаправление напрямую для мобильных пользователей
             } else {
-                // Open the affiliate link in a hidden iframe for desktop users
+                // Открываем скрытую ссылку для отслеживания на десктопе
                 let trackingFrame = document.createElement("iframe");
                 trackingFrame.style.width = "1px";
                 trackingFrame.style.height = "1px";
@@ -349,18 +355,18 @@
                 trackingFrame.src = affiliateLink;
                 document.body.appendChild(trackingFrame);
 
-                // Give time for affiliate link to register, then redirect
+                // Задержка перед редиректом
                 setTimeout(function() {
-                    window.location.href = targetURL; // Redirect after iframe tracking
+                    window.location.href = targetURL; // Перенаправление после отслеживания
                 }, 700);
             }
         });
 
-        // Google Translate Script Initialization
+        // Инициализация Google Translate
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
-                includedLanguages: 'en,es,fr,de,ru,it,pt,zh,ja,ko,ar,tr,pl,nl,da,sv,no,fi,cs,el,ro,hu', // All languages
+                includedLanguages: 'en,es,fr,de,ru,it,pt,zh,ja,ko,ar,tr,pl,nl,da,sv,no,fi,cs,el,ro,hu',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE
             }, 'google_translate_element');
         }
