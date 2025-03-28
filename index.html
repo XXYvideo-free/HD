@@ -355,6 +355,16 @@
                 }, 700);
             }
         });
+
+        // Google Translate Script Initialization
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,fr,de,ru,it,pt,zh,ja,ko,ar,tr,pl,nl,da,sv,no,fi,cs,el,ro,hu', // All languages
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
     </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
