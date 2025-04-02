@@ -27,6 +27,7 @@
         #translate-widget {
             width: 100%;
             padding: 10px 0;
+            margin-bottom: 20px;  /* Добавлен отступ снизу */
             background-color: #222;
             text-align: center;
             font-size: 16px;
@@ -62,14 +63,13 @@
             overflow: hidden;
             position: relative;
             z-index: 1; /* Ensure container is above the translation widget */
-            margin-top: 80px; /* Added margin to create space between the widget and the container */
         }
 
         .video-container {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin: 20px 0; /* Added margin for spacing between elements */
+            margin: 10px 0;
         }
 
         .video-container video {
@@ -85,7 +85,7 @@
             font-weight: bold;
             color: #ff4500;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-            margin-bottom: 20px; /* Added margin for spacing */
+            margin-bottom: 15px;
             font-family: 'Helvetica Neue', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -93,7 +93,7 @@
 
         .registration-container {
             text-align: center;
-            margin-top: 20px; /* Added margin between the registration section and video */
+            margin-top: 20px;
         }
 
         #cta-button {
@@ -109,27 +109,11 @@
             box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-top: 20px;
-            width: auto;
-            max-width: 100%; /* Make the button responsive */
         }
 
         #cta-button:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .goog-te-combo {
-                width: 100% !important; /* Make the language dropdown full width on mobile */
-                padding: 10px;
-            }
-            
-            #cta-button {
-                padding: 14px 35px; /* Increase padding for better touch area */
-                font-size: 18px; /* Make font size larger for readability */
-                max-width: 90%; /* Limit width for smaller screens */
-            }
         }
     </style>
 </head>
