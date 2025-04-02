@@ -27,12 +27,11 @@
         #translate-widget {
             width: 100%;
             padding: 10px 0;
-            margin-bottom: 20px;  /* Добавлен отступ снизу */
             background-color: #222;
             text-align: center;
             font-size: 16px;
             color: #fff;
-            z-index: 10;
+            margin-bottom: 20px; /* Добавляем отступ снизу */
         }
 
         /* Google Translate Dropdown Styling */
@@ -43,7 +42,7 @@
             background-color: #444;
             color: #fff;
             border: 1px solid #888;
-            width: 200px; /* Adjust width */
+            width: 200px;
         }
 
         #container {
@@ -60,7 +59,6 @@
             overflow: hidden;
             position: relative;
             z-index: 1; /* Ensure container is above the translation widget */
-            margin-top: 40px;  /* Добавлен отступ сверху для контента */
         }
 
         .video-container {
@@ -122,10 +120,12 @@
     </div>
 
     <div id="container">
+        <!-- Intro Text -->
         <div class="intro-text">
             I WILL GET TO KNOW YOU FOR COMMUNICATION AND PERSONAL MEETINGS
         </div>
 
+        <!-- Video -->
         <div class="video-container">
             <video id="video" autoplay muted>
                 <source src="woman.mp4" type="video/mp4">
@@ -133,6 +133,7 @@
             </video>
         </div>
 
+        <!-- Registration Button -->
         <div class="registration-container">
             <a href="https://offers.affimelody.com/click?pid=118208&offer_id=25" id="cta-button" target="_blank">MEET</a>
         </div>
