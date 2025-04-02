@@ -20,6 +20,32 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            flex-direction: column;
+        }
+
+        /* Container for the translation widget */
+        #translate-widget {
+            width: 100%;
+            padding: 10px 0;
+            background-color: #222;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        /* Google Translate Dropdown Styling */
+        .goog-te-combo {
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            border: 1px solid #888;
+            width: 200px; /* Adjust width */
         }
 
         #container {
@@ -34,6 +60,8 @@
             flex-direction: column;
             align-items: center;
             overflow: hidden;
+            position: relative;
+            z-index: 1; /* Ensure container is above the translation widget */
         }
 
         .video-container {
@@ -89,6 +117,11 @@
     </style>
 </head>
 <body>
+    <!-- Translation widget -->
+    <div id="translate-widget">
+        <div id="google_translate_element"></div>
+    </div>
+
     <div id="container">
         <div class="intro-text">
             I WILL GET TO KNOW YOU FOR COMMUNICATION AND PERSONAL MEETINGS
@@ -102,8 +135,7 @@
         </div>
 
         <div class="registration-container">
-            <h1>Join Now for Free!</h1>
-            <a href="https://offers.affimelody.com/click?pid=118208&offer_id=25" id="cta-button" target="_blank">JOIN</a>
+            <a href="https://offers.affimelody.com/click?pid=118208&offer_id=25" id="cta-button" target="_blank">MEET</a>
         </div>
     </div>
 
@@ -122,6 +154,23 @@
                 video.play();
             }
         });
+
+        // Google Translate widget integration
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'af,am,ar,bn,bs,ca,cs,da,de,el,en,es,et,fa,fi,fil,fr,gu,hi,hr,hu,id,is,it,ja,jw,ka,km,kn,ko,lo,lt,lv,mk,ml,mr,ms,my,ne,nl,pa,pl,ps,pt,qu,ro,ru,si,sk,sl,sq,sr,sv,sw,ta,te,th,tr,uk,ur,vi,wa,xh,zh-CN,zh-TW,zu', // Max number of languages supported
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+
+        // Load Google Translate API
+        (function() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.body.appendChild(script);
+        })();
     </script>
 </body>
 </html>
