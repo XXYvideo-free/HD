@@ -23,10 +23,10 @@
         }
 
         #container {
-            width: 80%; /* Уменьшена ширина контейнера */
-            max-width: 500px; /* Уменьшен максимальный размер контейнера */
-            background: #000; /* Чёрный цвет фона */
-            padding: 20px; /* Уменьшены отступы внутри контейнера */
+            width: 90%; /* Adjusted for mobile responsiveness */
+            max-width: 500px;
+            background: #000;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             text-align: center;
@@ -34,20 +34,6 @@
             flex-direction: column;
             align-items: center;
             overflow: hidden;
-        }
-
-        .image-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin: 10px 0;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain; /* Убедимся, что изображение не обрезается */
-            border-radius: 8px;
         }
 
         .video-container {
@@ -60,15 +46,14 @@
         .video-container video {
             width: 100%;
             height: auto;
-            max-width: 100%;
-            max-height: 400px; /* Ограничена высота видео */
+            max-height: 400px;
             border-radius: 8px;
-            object-fit: contain; /* Видео будет адаптироваться, чтобы не растягиваться */
+            object-fit: contain;
         }
 
         .registration-container {
             text-align: center;
-            margin-top: 10px; /* Уменьшен отступ */
+            margin-top: 20px;
         }
 
         #cta-button {
@@ -83,7 +68,7 @@
             display: inline-block;
             box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px; /* Увеличен отступ для кнопки */
+            margin-top: 20px;
         }
 
         #cta-button:hover {
@@ -94,12 +79,6 @@
 </head>
 <body>
     <div id="container">
-        <!-- Изображение ai_bot.png сверху -->
-        <div class="image-container">
-            <img src="ai_bot.png" alt="AI Bot">
-        </div>
-
-        <!-- Контейнер для видео woman.mp4 без элементов управления, без зацикливания -->
         <div class="video-container">
             <video id="video" autoplay muted>
                 <source src="woman.mp4" type="video/mp4">
@@ -107,29 +86,23 @@
             </video>
         </div>
 
-        <!-- Блок с кнопкой, расположенной сразу под видео -->
         <div class="registration-container">
             <h1>Join Now for Free!</h1>
-            <a href="https://offers.affimelody.com/click?pid=118208&offer_id=531" id="cta-button" target="_blank">JOIN</a>
+            <a href="https://offers.affimelody.com/click?pid=118208&offer_id=25" id="cta-button" target="_blank">JOIN</a>
         </div>
     </div>
 
     <script>
         const video = document.getElementById('video');
 
-        // Видео воспроизводится только один раз при загрузке страницы
         video.onended = function() {
-            // Убираем атрибут autoplay и делаем видео доступным для клика
-            video.removeAttribute('autoplay');
+            video.currentTime = 0;
         };
 
-        // Обработчик клика по видео
         video.addEventListener('click', function() {
-            // Если видео не воспроизводится, начинаем воспроизведение
             if (video.paused) {
                 video.play();
             } else {
-                // Ставим видео на начало и начинаем заново
                 video.currentTime = 0;
                 video.play();
             }
