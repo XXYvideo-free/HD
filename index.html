@@ -109,11 +109,27 @@
             box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-top: 20px;
+            width: auto;
+            max-width: 100%; /* Make the button responsive */
         }
 
         #cta-button:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .goog-te-combo {
+                width: 100% !important; /* Make the language dropdown full width on mobile */
+                padding: 10px;
+            }
+            
+            #cta-button {
+                padding: 14px 35px; /* Increase padding for better touch area */
+                font-size: 18px; /* Make font size larger for readability */
+                max-width: 90%; /* Limit width for smaller screens */
+            }
         }
     </style>
 </head>
