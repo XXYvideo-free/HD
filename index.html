@@ -11,7 +11,7 @@
             width: 100%;
             height: 100%;
             font-family: Arial, sans-serif, system-ui;
-            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            background: linear-gradient(to bottom, #1c2b38, #2a3a4f); /* Градиент темного синего и серого */
             color: #fff;
             overflow-x: hidden;
             display: flex;
@@ -23,13 +23,13 @@
         #container {
             width: 90%;
             max-width: 900px;
-            background: rgba(30, 30, 30, 0.95);
+            background: rgba(42, 50, 60, 0.95); /* Прозрачный серый фон */
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Более мягкие тени */
             text-align: center;
             margin: 20px 0;
-            border: 5px solid #ff6347;
+            border: 5px solid #ff8c00; /* Оранжевая рамка */
         }
 
         .image-container img {
@@ -39,18 +39,18 @@
         }
 
         .image-heading {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
-            color: #ffd700;
+            color: #f1c40f; /* Мягкий золотой цвет */
             text-shadow: 1px 1px 5px #000;
             margin-top: 20px;
         }
 
         .sub-heading {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            color: #000;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
+            color: #f39c12; /* Теплый оранжевый оттенок */
+            background: linear-gradient(45deg, #f39c12, #e67e22); /* Градиент из оранжевого */
             -webkit-background-clip: text;
             color: transparent;
             margin-top: 5px;
@@ -59,9 +59,9 @@
 
         .info-text {
             font-size: 18px;
-            color: #ccc;
+            color: #ecf0f1; /* Светлый серый текст */
             margin: 15px 0;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
+            background: linear-gradient(45deg, #f39c12, #e67e22); /* Градиент для акцента */
             -webkit-background-clip: text;
             color: transparent;
             font-weight: bold;
@@ -71,20 +71,20 @@
             padding: 15px 40px;
             font-size: 18px;
             font-weight: bold;
-            color: #000;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
+            color: #fff;
+            background: linear-gradient(45deg, #f39c12, #e67e22); /* Мягкий оранжевый градиент */
             text-transform: uppercase;
             border-radius: 8px;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-top: 20px;
         }
 
         #cta-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.8);
         }
 
         .notification {
@@ -94,8 +94,8 @@
         }
 
         #ai-bot-image {
-            width: 33%; /* Reduce the width of ai_bot.png to 33% of its original size */
-            height: auto; /* Maintain aspect ratio */
+            width: 33%; /* Уменьшенный размер изображения */
+            height: auto;
             border-radius: 8px;
             margin-bottom: 20px;
         }
@@ -107,11 +107,11 @@
             }
 
             .image-heading {
-                font-size: 20px;
+                font-size: 22px;
             }
 
             .sub-heading {
-                font-size: 16px;
+                font-size: 18px;
             }
 
             .info-text {
@@ -124,7 +124,7 @@
             }
 
             #ai-bot-image {
-                width: 50%; /* Make the ai_bot.png image larger for smaller screens */
+                width: 50%; /* Увеличение размера для мобильных устройств */
             }
         }
 
@@ -134,11 +134,11 @@
             }
 
             .image-heading {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .sub-heading {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             .info-text {
@@ -151,7 +151,7 @@
             }
 
             #ai-bot-image {
-                width: 70%; /* Further adjust size for very small screens */
+                width: 70%; /* Дополнительная настройка для самых маленьких экранов */
             }
         }
     </style>
