@@ -92,93 +92,90 @@
             color: #28a745;
             font-weight: bold;
         }
+
+        #ai-bot-image {
+            width: 33%; /* Reduce the width of ai_bot.png to 33% of its original size */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            #container {
+                padding: 20px;
+            }
+
+            .image-heading {
+                font-size: 20px;
+            }
+
+            .sub-heading {
+                font-size: 16px;
+            }
+
+            .info-text {
+                font-size: 16px;
+            }
+
+            #cta-button {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+
+            #ai-bot-image {
+                width: 50%; /* Make the ai_bot.png image larger for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            #container {
+                padding: 15px;
+            }
+
+            .image-heading {
+                font-size: 18px;
+            }
+
+            .sub-heading {
+                font-size: 14px;
+            }
+
+            .info-text {
+                font-size: 14px;
+            }
+
+            #cta-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            #ai-bot-image {
+                width: 70%; /* Further adjust size for very small screens */
+            }
+        }
     </style>
 </head>
 <body>
     <div id="container">
-        <div class="image-heading" data-translate="image-heading">EXCLUSIVE 18+ ENTERTAINMENT PORTAL</div>
+        <div class="image-heading">EXCLUSIVE 18+ ENTERTAINMENT PORTAL</div>
 
         <!-- Image -->
         <div class="image-container">
-            <img src="ai_botfull.png" alt="Full AI Bot Image" data-translate="ai-botfull-alt">
+            <img src="ai_botfull.png" alt="Full AI Bot Image">
         </div>
 
-        <div class="sub-heading" data-translate="sub-heading">Access XVideos Content Quickly and for Free!</div>
+        <div class="sub-heading">Access XVideos Content Quickly and for Free!</div>
 
-        <div class="info-text" data-translate="info-text">ОТВЕТЬ НА ТРИ ВОПРОСА ЧТОБЫ НАЧАТЬ</div>
+        <div class="info-text">ANSWER THREE QUESTIONS TO GET STARTED</div>
+
+        <!-- Image with reduced size -->
+        <div class="image-container">
+            <img id="ai-bot-image" src="ai_bot.png" alt="AI Bot Preview">
+        </div>
         
-        <a id="cta-button" href="https://offers.affimelody.com/click?pid=118208&offer_id=812" 
-           target="_blank" rel="noopener noreferrer" data-translate="cta-button">CONTINUE</a>
+        <a id="cta-button" href="https://offers.affimelody.com/click?pid=3749&offer_id=812" 
+           target="_blank" rel="noopener noreferrer">CONTINUE</a>
     </div>
-
-<script>
-    // Объект с переводами для различных языков
-    const translations = {
-        "en": {
-            "video-alt": "Your browser does not support the video tag.",
-            "image-heading": "EXCLUSIVE 18+ ENTERTAINMENT PORTAL",
-            "ai-bot-alt": "AI Bot Preview",
-            "ai-botfull-alt": "Full AI Bot Image",
-            "sub-heading": "Access XVideos Content Quickly and for Free!",
-            "info-text": "ANSWER THREE QUESTIONS TO GET STARTED",
-            "cta-button": "CONTINUE"
-        },
-        "ru": {
-            "video-alt": "Ваш браузер не поддерживает тег video.",
-            "image-heading": "ЭКСКЛЮЗИВНЫЙ 18+ ПОРТАЛ",
-            "ai-bot-alt": "Предпросмотр AI бота",
-            "ai-botfull-alt": "Полный AI бот изображение",
-            "sub-heading": "Получите доступ к контенту XVideos быстро и бесплатно!",
-            "info-text": "ОТВЕТЬ НА ТРИ ВОПРОСА ЧТОБЫ НАЧАТЬ",
-            "cta-button": "ПРОДОЛЖИТЬ"
-        },
-        "es": {
-            "video-alt": "Su navegador no soporta la etiqueta de video.",
-            "image-heading": "PORTAL EXCLUSIVO 18+ DE ENTRETENIMIENTO",
-            "ai-bot-alt": "Vista previa del bot IA",
-            "ai-botfull-alt": "Imagen completa del bot IA",
-            "sub-heading": "¡Accede al contenido de XVideos de manera rápida y gratuita!",
-            "info-text": "RESPONDE TRES PREGUNTAS PARA EMPEZAR",
-            "cta-button": "CONTINUAR"
-        },
-        "fr": {
-            "video-alt": "Votre navigateur ne prend pas en charge la balise vidéo.",
-            "image-heading": "PORTAIL EXCLUSIF 18+ DE DIVERTISSEMENT",
-            "ai-bot-alt": "Aperçu du bot IA",
-            "ai-botfull-alt": "Image complète du bot IA",
-            "sub-heading": "Accédez au contenu de XVideos rapidement et gratuitement!",
-            "info-text": "RÉPONDEZ À TROIS QUESTIONS POUR COMMENCER",
-            "cta-button": "CONTINUER"
-        },
-        "de": {
-            "video-alt": "Ihr Browser unterstützt das Video-Tag nicht.",
-            "image-heading": "EXKLUSIVES 18+ ENTERTAINMENT-PORTAL",
-            "ai-bot-alt": "AI Bot Vorschau",
-            "ai-botfull-alt": "Vollbild AI Bot",
-            "sub-heading": "Zugriff auf XVideos-Inhalte schnell und kostenlos!",
-            "info-text": "ANTWORTE AUF DREI FRAGEN, UM ZU BEGINNEN",
-            "cta-button": "WEITER"
-        }
-    };
-
-    // Определяем язык браузера
-    const userLang = navigator.language || navigator.userLanguage;
-    const lang = userLang.split('-')[0]; // This captures 'en', 'ru', 'es', etc.
-    const selectedLang = translations[lang] || translations["en"];
-
-    // Функция для замены текста на странице
-    function applyTranslations() {
-        const elements = document.querySelectorAll('[data-translate]');
-        elements.forEach(element => {
-            const translationKey = element.getAttribute('data-translate');
-            if (selectedLang[translationKey]) {
-                element.textContent = selectedLang[translationKey];
-            }
-        });
-    }
-
-    // Применяем переводы
-    applyTranslations();
-</script>
 </body>
 </html>
