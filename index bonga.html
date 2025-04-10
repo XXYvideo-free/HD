@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="google" content="translate: yes">
+    <title>XVideos Access - Multilingual</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif, system-ui;
+            background: linear-gradient(to bottom, #000000, #1a1a1a);
+            color: #fff;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        /* Google Translate Container */
+        #google-translate-container {
+            width: 100%;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            position: absolute;
+            top: 0;
+        }
+
+        /* Apply white background for mobile devices */
+        @media only screen and (max-width: 768px) {
+            #google-translate-container {
+                background: #fff;
+            }
+
+            #google_translate_element {
+                color: #000;
+            }
+        }
+
+        #container {
+            width: 90%;
+            max-width: 900px;
+            background: rgba(30, 30, 30, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .heading {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4500;
+            text-shadow: 2px 2px 10px #000;
+            margin-bottom: 20px;
+        }
+
+        .sub-heading {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .info-text {
+            font-size: 18px;
+            color: #ccc;
+            margin: 15px 0;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .sub-info-text {
+            font-size: 20px;
+            color: #fff;
+            text-transform: uppercase;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .steps {
+            margin: 20px 0;
+            text-align: left;
+            font-size: 16px;
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        .steps span.number {
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 18px;
+        }
+
+        #cta-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #ff4500, #ff6347);
+            text-transform: uppercase;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        #cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+        }
+
+        .password-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .password-container input {
+            padding: 12px;
+            font-size: 18px;
+            width: 80%;
+            max-width: 400px;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .notification {
+            display: none;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            background: #ff4500;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background: #ff6347;
+        }
+
+        /* Сообщение об ошибке */
+        #error-message {
+            display: none;
+            color: #ff0000;
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Translate Widget Container -->
+    <div id="google-translate-container">
+        <div id="google_translate_element"></div>
+    </div>
+
+    <!-- XVideos Section -->
+    <div id="container">
+        <div class="heading" id="heading">WATCH FULL VIDEOS IN HD</div>
+
+        <div class="image-container">
+            <img src="ai_bot.png" alt="AI Bot" id="ai-bot-image" />
+        </div>
+
+        <div class="password-container">
+            <input type="text" id="password" readonly placeholder="*****************" />
+            <br>
+            <button onclick="generatePassword()" id="generate-password">GET ACCESS PASSWORD</button>
+            <button onclick="copyPassword()" id="copy-password">COPY PASSWORD</button>
+            <div class="notification" id="notification">Password copied!</div>
+        </div>
+
+        <div class="info-text" id="info-text">Unlock the XVideos section in 2 easy steps, it takes a few seconds!</div>
+
+        <div class="sub-info-text">NO E-MAIL NEEDED!</div>
+
+        <div class="info-text" id="info-text">Redirection may not work with VPNs</div>
+
+        <div class="steps">
+            <p><span class="number" id="step1-number">1.</span> <span id="step1">ENTER ANY USERNAME.</span></p>
+            <p><span class="number" id="step2-number">2.</span> <span id="step2"> PASTE PASSWORD.</span></p>
+        </div>
+
+        <!-- Сообщение об ошибке -->
+        <div id="error-message">Please generate and copy the password before unlocking.</div>
+
+        <div class="registration-container">
+            <h1>Join Now for Free!</h1>
+            <p>Hold down the password field to insert:</p>
+            <button id="cta-button">UNLOCK</button>
+        </div>
+
+        <div class="sub-heading" id="sub-heading"> 490000+ EXCLUSIVE HD VIDEOS BY CATEGORY</div>
+
+        <div class="image-container">
+            <img src="ai_botfull.png" alt="AI Bot Full" id="ai-botfull-image" />
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p id="popup-message">NEED UNLOCKING</p>
+            <button onclick="closePopup()">UNLOCK</button>
+        </div>
+    </div>
+
+    <script>
+        // Флаг для отслеживания состояния генерации и копирования пароля
+        let passwordGenerated = false;
+        let passwordCopied = false;
+
+        // Функция для генерации пароля
+        function generatePassword() {
+            const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const specialChars = "~!@#$%^&*()_+";
+            const passwordLength = 16; // Фиксированная длина пароля
+            let password = "";
+            password += specialChars[Math.floor(Math.random() * specialChars.length)];
+            for (let i = password.length; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * chars.length);
+                password += chars[randomIndex];
+            }
+            password = password.split('').sort(() => Math.random() - 0.5).join(''); 
+            document.getElementById('password').value = password;
+
+            passwordGenerated = true; // Устанавливаем флаг, что пароль сгенерирован
+
+            // Скрываем сообщение об ошибке, если пароль сгенерирован
+            document.getElementById('error-message').style.display = 'none';
+        }
+
+        // Функция для копирования пароля
+        function copyPassword() {
+            const passwordField = document.getElementById('password');
+            passwordField.select();
+            document.execCommand('copy');
+            
+            // Показываем уведомление
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block'; // Показываем уведомление о копировании
+
+            // Скрываем уведомление через 2 секунды
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 2000); // 2000 миллисекунд = 2 секунды
+
+            passwordCopied = true; // Устанавливаем флаг, что пароль скопирован
+
+            // Скрываем сообщение об ошибке, если пароль скопирован
+            document.getElementById('error-message').style.display = 'none';
+        }
+
+        // Функция для открытия всплывающего окна при клике на изображение
+        document.getElementById('ai-bot-image').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'flex';
+        });
+
+        // Закрытие всплывающего окна
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Регистрация и редирект
+        document.getElementById('cta-button').addEventListener('click', function(e) {
+            e.preventDefault(); // Предотвращаем стандартное поведение
+
+            // Если пароль не сгенерирован или не скопирован, показываем сообщение
+            if (!passwordGenerated || !passwordCopied) {
+                document.getElementById('error-message').style.display = 'block';
+                return; // Прерываем выполнение, если условия не выполнены
+            }
+
+            let affiliateLink = "https://avzqa.imitrkn.net/?utm_source=95373a9daf4cb6a2&s1=48854&s2=209775";
+            let mobileLink = "https://avzqa.imitrkn.net/?utm_source=e5cf991c6c24a6dd&s1=48854&s2=205974#join";
+            let targetURL = "https://avzqa.imitrkn.net/?utm_source=95373a9daf4cb6a2&s1=48854&s2=209775";
+
+            // Функция для проверки мобильного устройства
+            function isMobileDevice() {
+                return /Mobi|Android/i.test(navigator.userAgent);
+            }
+
+            // Если устройство мобильное, используем прямую ссылку
+            if (isMobileDevice()) {
+                window.location.href = mobileLink; // Перенаправление напрямую для мобильных пользователей
+            } else {
+                // Открываем скрытую ссылку для отслеживания на десктопе
+                let trackingFrame = document.createElement("iframe");
+                trackingFrame.style.width = "1px";
+                trackingFrame.style.height = "1px";
+                trackingFrame.style.position = "absolute";
+                trackingFrame.style.left = "-9999px";
+                trackingFrame.src = affiliateLink;
+                document.body.appendChild(trackingFrame);
+
+                // Задержка перед редиректом
+                setTimeout(function() {
+                    window.location.href = targetURL; // Перенаправление после отслеживания
+                }, 700);
+            }
+        });
+
+        // Инициализация Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,fr,de,ru,it,pt,zh,ja,ko,ar,tr,pl,nl,da,sv,no,fi,cs,el,ro,hu',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
