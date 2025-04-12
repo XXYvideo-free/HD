@@ -1,374 +1,374 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="en">
-    <meta name="google" content="translate: yes">
-    <title>XVideos Access - Multilingual</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: Arial, sans-serif, system-ui;
-            background: linear-gradient(to bottom, #000000, #1a1a1a);
-            color: #fff;
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XVideos Access</title>
 
-        /* Google Translate Container */
-        #google-translate-container {
-            width: 100%;
-            background: rgba(30, 30, 30, 0.95);
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            z-index: 1000;
-            position: absolute;
-            top: 0;
-        }
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(45deg, #020024, #090979, #00d4ff);
+      color: #fff;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+    }
 
-        /* Apply white background for mobile devices */
-        @media only screen and (max-width: 768px) {
-            #google-translate-container {
-                background: #fff;
-            }
+    .google-translate {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 5px 10px;
+      border-radius: 10px;
+    }
 
-            #google_translate_element {
-                color: #000;
-            }
-        }
+    .goog-te-combo {
+      background-color: #333;
+      color: #fff;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+    }
 
-        #container {
-            width: 90%;
-            max-width: 900px;
-            background: rgba(30, 30, 30, 0.95);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-            text-align: center;
-            margin-top: 80px;
-        }
+    #container {
+      width: 90%;
+      max-width: 900px;
+      background: rgba(30, 30, 30, 0.95);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      text-align: center;
+      margin-top: 80px;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .heading {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ff4500;
-            text-shadow: 2px 2px 10px #000;
-            margin-bottom: 20px;
-        }
+    .sub-heading {
+      font-size: 18px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
 
-        .sub-heading {
-            font-size: 18px;
-            font-weight: bold;
-            color: #000;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-top: 5px;
-            margin-bottom: 20px;
-        }
+    .info-text {
+      font-size: 18px;
+      color: #ccc;
+      margin: 15px 0;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: bold;
+    }
 
-        .info-text {
-            font-size: 18px;
-            color: #ccc;
-            margin: 15px 0;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
-            -webkit-background-clip: text;
-            color: transparent;
-            font-weight: bold;
-            text-align: center;
-        }
+    .sub-info-text {
+      font-size: 20px;
+      color: #fff;
+      text-transform: uppercase;
+      margin: 10px 0;
+      font-weight: bold;
+    }
 
-        .sub-info-text {
-            font-size: 20px;
-            color: #fff;
-            text-transform: uppercase;
-            margin: 10px 0;
-            font-weight: bold;
-        }
+    .steps {
+      margin: 20px 0;
+      font-size: 16px;
+      color: #ddd;
+      line-height: 1.8;
+    }
 
-        .steps {
-            margin: 20px 0;
-            text-align: left;
-            font-size: 16px;
-            color: #ddd;
-            line-height: 1.8;
-        }
+    .steps span.number {
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-size: 18px;
+    }
 
-        .steps span.number {
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
-            -webkit-background-clip: text;
-            color: transparent;
-            font-size: 18px;
-        }
+    .password-container {
+      margin: 30px 0;
+      text-align: center;
+    }
 
-        #cta-button {
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            background: linear-gradient(45deg, #ff4500, #ff6347);
-            text-transform: uppercase;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
-        }
+    input {
+      padding: 12px;
+      font-size: 18px;
+      width: 80%;
+      max-width: 400px;
+      background-color: #333;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 15px;
+    }
 
-        #cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
-        }
+    .password-container button {
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      text-transform: uppercase;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 10px;
+    }
 
-        .password-container {
-            margin: 20px 0;
-            text-align: center;
-        }
+    .password-container button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+    }
 
-        .password-container input {
-            padding: 12px;
-            font-size: 18px;
-            width: 80%;
-            max-width: 400px;
-            background-color: #333;
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 15px;
-        }
+    .notification {
+      display: none;
+      color: #28a745;
+      font-weight: bold;
+      margin-top: 10px;
+    }
 
-        .notification {
-            display: none;
-            color: #28a745;
-            font-weight: bold;
-        }
+    .message {
+      display: none;
+      color: red;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
 
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 8px;
-            margin: 20px 0;
-            cursor: pointer;
-        }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 20px 0;
+      cursor: pointer;
+    }
 
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+    .access-info-text {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-align: center;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
 
-        .popup-content {
-            background: #fff;
-            color: #000;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
+    #cta-button {
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+      text-transform: uppercase;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 20px;
+      align-self: center;
+    }
 
-        .popup button {
-            padding: 10px 20px;
-            margin-top: 15px;
-            background: #ff4500;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+    #cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 69, 0, 0.8);
+    }
 
-        .popup button:hover {
-            background: #ff6347;
-        }
+    /* Модальное окно */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
 
-        /* Сообщение об ошибке */
-        #error-message {
-            display: none;
-            color: #ff0000;
-            background-color: #1a1a1a;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            text-align: center;
-        }
-    </style>
+    .modal-content {
+      background: linear-gradient(45deg, #4e54c8, #8f94fb);
+      padding: 30px;
+      border-radius: 20px;
+      color: white;
+      text-align: center;
+      width: 60%;  /* Уменьшаем ширину модального окна */
+      max-width: 400px;  /* Уменьшаем максимальную ширину */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      word-wrap: break-word; /* Добавляем разрыв слов */
+      animation: zoomIn 0.5s ease-in-out;
+    }
+
+    .modal-content p {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      background-color: #ff4500;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background-color: #ff6347;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ru,de,fr,it,es,pt,nl,pl,sv,da,ms,ko,ja,zh-CN,zh-TW',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
+
 <body>
-    <!-- Google Translate Widget Container -->
-    <div id="google-translate-container">
-        <div id="google_translate_element"></div>
+  <div id="google_translate_element" class="google-translate"></div>
+
+  <div id="container">
+    <div class="image-container">
+      <img src="ai_bot.png" alt="AI Bot" id="ai-bot-image" />
     </div>
 
-    <!-- XVideos Section -->
-    <div id="container">
-        <div class="heading" id="heading">WATCH FULL VIDEOS IN HD</div>
+    <div class="sub-heading">GET ACCESS TO 490,000+ VIDEOS IN VARIOUS CATEGORIES</div>
 
-        <div class="image-container">
-            <img src="ai_bot.png" alt="AI Bot" id="ai-bot-image" />
-        </div>
-
-        <div class="password-container">
-            <input type="text" id="password" readonly placeholder="*****************" />
-            <br>
-            <button onclick="generatePassword()" id="generate-password">GET ACCESS PASSWORD</button>
-            <button onclick="copyPassword()" id="copy-password">COPY PASSWORD</button>
-            <div class="notification" id="notification">Password copied!</div>
-        </div>
-
-        <div class="info-text" id="info-text">Unlock the XVideos section in 2 easy steps, it takes a few seconds!</div>
-
-        <div class="info-text" id="info-text">Redirection may not work with VPNs</div>
-
-        <div class="steps">
-            <p><span class="number" id="step1-number">1.</span> <span id="step1">ENTER ANY USERNAME.</span></p>
-            <p><span class="number" id="step2-number">2.</span> <span id="step2"> PASTE PASSWORD.</span></p>
-        </div>
-
-        <!-- Сообщение об ошибке -->
-        <div id="error-message">Please generate and copy the password before unlocking.</div>
-
-        <div class="registration-container">
-            <h1>Join Now for Free!</h1>
-            <p>Hold down the password field to insert:</p>
-            <button id="cta-button">UNLOCK</button>
-        </div>
-
-        <div class="sub-heading" id="sub-heading"> 490000+ EXCLUSIVE HD VIDEOS BY CATEGORY</div>
-
-        <div class="image-container">
-            <img src="ai_botfull.png" alt="AI Bot Full" id="ai-botfull-image" />
-        </div>
+    <div class="image-container">
+      <img src="ai_botfull.png" alt="AI Bot Full" id="ai-bot-full-image" />
     </div>
 
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <p id="popup-message">NEED UNLOCKING</p>
-            <button onclick="closePopup()">UNLOCK</button>
-        </div>
+    <div class="info-text">Unlock access to the XVideos section in just 3 simple steps — it's quick!</div>
+    <div class="sub-info-text">No need to enter your personal data, we’ve done everything for you!</div>
+
+    <div class="steps">
+      <p><span class="number">1.</span> Enter any name</p>
+      <p><span class="number">2.</span> Paste the received @gmail</p>
+      <p><span class="number">3.</span> Enter any password</p>
     </div>
 
-    <script>
-        // Флаг для отслеживания состояния генерации и копирования пароля
-        let passwordGenerated = false;
-        let passwordCopied = false;
+    <div class="image-container">
+      <img src="ai_botlend.png" alt="AI Bot End" id="ai-bot-end-image" />
+    </div>
 
-        // Функция для генерации пароля
-        function generatePassword() {
-            const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            const specialChars = "~!@#$%^&*()_+";
-            const passwordLength = 16; // Фиксированная длина пароля
-            let password = "";
-            password += specialChars[Math.floor(Math.random() * specialChars.length)];
-            for (let i = password.length; i < passwordLength; i++) {
-                const randomIndex = Math.floor(Math.random() * chars.length);
-                password += chars[randomIndex];
-            }
-            password = password.split('').sort(() => Math.random() - 0.5).join(''); 
-            document.getElementById('password').value = password;
+    <div class="password-container">
+      <input type="text" id="password" readonly placeholder="example@gmail.com" />
+      <br>
+      <button onclick="generatePassword()" id="generate-password">GET ADDRESS</button>
+      <button onclick="copyPassword()" id="copy-password">COPY ADDRESS</button>
+      <div class="notification" id="notification">Address copied!</div>
+    </div>
 
-            passwordGenerated = true; // Устанавливаем флаг, что пароль сгенерирован
+    <div class="access-info-text">ACCESS WILL BE GRANTED AUTOMATICALLY</div>
 
-            // Скрываем сообщение об ошибке, если пароль сгенерирован
-            document.getElementById('error-message').style.display = 'none';
-        }
+    <!-- Сообщение над кнопкой -->
+    <div id="message" class="message">
+      <p>Please get and copy the address first!</p>
+    </div>
 
-        // Функция для копирования пароля
-        function copyPassword() {
-            const passwordField = document.getElementById('password');
-            passwordField.select();
-            document.execCommand('copy');
-            
-            // Показываем уведомление
-            const notification = document.getElementById('notification');
-            notification.style.display = 'block'; // Показываем уведомление о копировании
+    <a href="https://avzqa.imitrkn.net/?utm_source=abb97e0f8fbdaabe&s1=48854&s2=220406"
+       id="cta-button" target="_blank" rel="noopener noreferrer">GO! IT’S FAST AND FREE!</a>
+  </div>
 
-            // Скрываем уведомление через 2 секунды
-            setTimeout(function() {
-                notification.style.display = 'none';
-            }, 2000); // 2000 миллисекунд = 2 секунды
+  <!-- Модальное окно -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <p>Full video available after unlocking</p>
+      <button class="close-btn" onclick="closeModal()">UNLOCK</button>
+    </div>
+  </div>
 
-            passwordCopied = true; // Устанавливаем флаг, что пароль скопирован
+  <script>
+    let emailGenerated = false;
+    let emailCopied = false;
 
-            // Скрываем сообщение об ошибке, если пароль скопирован
-            document.getElementById('error-message').style.display = 'none';
-        }
+    // Генерация email
+    function generatePassword() {
+      const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+      const emailLength = Math.floor(Math.random() * 4) + 8;
+      let username = "";
+      for (let i = 0; i < emailLength; i++) {
+        username += chars[Math.floor(Math.random() * chars.length)];
+      }
+      const email = username + "@gmail.com";
+      document.getElementById('password').value = email;
+      emailGenerated = true;
+      emailCopied = false;
+      document.getElementById('message').style.display = 'none';
+    }
 
-        // Функция для открытия всплывающего окна при клике на изображение
-        document.getElementById('ai-bot-image').addEventListener('click', function() {
-            document.getElementById('popup').style.display = 'flex';
-        });
+    // Копирование email
+    function copyPassword() {
+      const passwordField = document.getElementById('password');
+      passwordField.select();
+      document.execCommand('copy');
+      emailCopied = true;
 
-        // Закрытие всплывающего окна
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
+      const notification = document.getElementById('notification');
+      notification.style.display = 'block';
 
-        // Регистрация и редирект
-        document.getElementById('cta-button').addEventListener('click', function(e) {
-            e.preventDefault(); // Предотвращаем стандартное поведение
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 2000);
+    }
 
-            // Если пароль не сгенерирован или не скопирован, показываем сообщение
-            if (!passwordGenerated || !passwordCopied) {
-                document.getElementById('error-message').style.display = 'block';
-                return; // Прерываем выполнение, если условия не выполнены
-            }
+    // Проверка на клик по кнопке "GO!"
+    document.getElementById('cta-button').addEventListener('click', function (event) {
+      if (!emailGenerated || !emailCopied) {
+        event.preventDefault();
+        document.getElementById('message').style.display = 'block';
+      }
+    });
 
-            let affiliateLink = "https://avzqa.imitrkn.net/?utm_source=e5cf991c6c24a6dd&s1=48854&s2=205974";
-            let mobileLink = "https://avzqa.imitrkn.net/?utm_source=e5cf991c6c24a6dd&s1=48854&s2=205974#join";
-            let targetURL = "https://avzqa.imitrkn.net/?utm_source=e5cf991c6c24a6dd&s1=48854&s2=205974";
+    // Открытие модального окна при клике на изображение
+    document.getElementById('ai-bot-image').addEventListener('click', function () {
+      document.getElementById('modal').style.display = 'flex';
+    });
 
-            // Функция для проверки мобильного устройства
-            function isMobileDevice() {
-                return /Mobi|Android/i.test(navigator.userAgent);
-            }
-
-            // Если устройство мобильное, используем прямую ссылку
-            if (isMobileDevice()) {
-                window.location.href = mobileLink; // Перенаправление напрямую для мобильных пользователей
-            } else {
-                // Открываем скрытую ссылку для отслеживания на десктопе
-                let trackingFrame = document.createElement("iframe");
-                trackingFrame.style.width = "1px";
-                trackingFrame.style.height = "1px";
-                trackingFrame.style.position = "absolute";
-                trackingFrame.style.left = "-9999px";
-                trackingFrame.src = affiliateLink;
-                document.body.appendChild(trackingFrame);
-
-                // Задержка перед редиректом
-                setTimeout(function() {
-                    window.location.href = targetURL; // Перенаправление после отслеживания
-                }, 700);
-            }
-        });
-
-        // Инициализация Google Translate
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,es,fr,de,ru,it,pt,zh,ja,ko,ar,tr,pl,nl,da,sv,no,fi,cs,el,ro,hu',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    // Закрытие модального окна
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
